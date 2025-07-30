@@ -104,7 +104,7 @@ const experiences = [
     date: "Aug 2024 - Present",
     responsibilities: 
     [
-      "Optimizing CV models with hardware,",
+      "Optimizing CV models with hardware acceleration.",
       "Deploying real-time AI pipelines on edge & cloud.",
       "Building LLMs, RAG workflows, and GenAI APIs.",
     ],
