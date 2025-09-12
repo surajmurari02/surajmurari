@@ -1,10 +1,23 @@
+import { motion } from "framer-motion";
+
 const SingleContactSocial = ({ Icon, link }) => {
   return (
-    <div className="text-2xl h-12 w-12 border border-orange text-orange rounded-full p-3 flex items-center justify-center ">
-      <a href={link} className="cursor-pointer">
-        <Icon />
+    <motion.div 
+      className="relative group"
+      whileHover={{ scale: 1.1, rotate: 5 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan to-orange rounded-xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+      <a 
+        href={link} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border border-orange/50 text-orange rounded-xl hover:border-orange/80 hover:text-white hover:shadow-lg hover:shadow-orange/25 transition-all duration-300"
+      >
+        <Icon className="text-lg" />
       </a>
-    </div>
+    </motion.div>
   );
 };
 

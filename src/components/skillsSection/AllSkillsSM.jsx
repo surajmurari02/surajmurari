@@ -1,67 +1,93 @@
-import { FaHtml5 } from "react-icons/fa";
-import { FaCss3Alt } from "react-icons/fa";
-import { IoLogoJavascript } from "react-icons/io";
-import { SiTypescript } from "react-icons/si";
-import { FaReact } from "react-icons/fa";
-import { SiRedux } from "react-icons/si";
-import { SiNextdotjs } from "react-icons/si";
-import { RiTailwindCssFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../framerMotion/variants";
+import SingleSkill from "./SingleSkill";
+
+import { SiPython, SiPytorch, SiOpencv, SiNvidia, SiDocker, SiOpenai } from "react-icons/si";
+import { SiIntel } from "react-icons/si";
 
 const skills = [
   {
-    skill: "HTML",
-    icon: FaHtml5,
+    skill: "Python",
+    icon: SiPython,
   },
   {
-    skill: "CSS",
-    icon: FaCss3Alt,
+    skill: "PyTorch",
+    icon: SiPytorch,
   },
   {
-    skill: "JavaScript",
-    icon: IoLogoJavascript,
+    skill: "OpenCV",
+    icon: SiOpencv,
   },
   {
-    skill: "TypeScript",
-    icon: SiTypescript,
+    skill: "TensorRT",
+    icon: SiNvidia,
   },
   {
-    skill: "ReactJS",
-    icon: FaReact,
+    skill: "CUDA",
+    icon: SiNvidia,
   },
   {
-    skill: "Redux",
-    icon: SiRedux,
+    skill: "DeepStream",
+    icon: SiNvidia,
   },
   {
-    skill: "NextJS",
-    icon: SiNextdotjs,
+    skill: "OpenVINO",
+    icon: SiIntel,
   },
   {
-    skill: "TailwindCSS",
-    icon: RiTailwindCssFill,
+    skill: "Docker",
+    icon: SiDocker,
+  },
+  {
+    skill: "OpenAI",
+    icon: SiOpenai,
   },
 ];
 
 const AllSkillsSM = () => {
   return (
-    <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 my-12">
-      {skills.map((item, index) => {
-        return (
-          <motion.div
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.7 }}
-            key={index}
-            className="flex flex-col items-center"
-          >
-            <item.icon className="text-7xl text-orange" />
-            <p className="text-center mt-4">{item.skill}</p>
-          </motion.div>
-        );
-      })}
+    <div className="w-full max-w-4xl mx-auto">
+      {/* Skills Grid for Mobile */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+        {skills.map((item, index) => {
+          return (
+            <motion.div
+              variants={fadeIn("up", index * 0.1)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+              key={index}
+              className="flex justify-center"
+            >
+              <SingleSkill
+                text={item.skill}
+                imgSvg={<item.icon />}
+              />
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Skills Categories for Mobile */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        className="mt-6 text-center"
+      >
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <span className="px-2 py-1 text-xs font-medium bg-primary-100 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300 rounded-full">
+            Deep Learning
+          </span>
+          <span className="px-2 py-1 text-xs font-medium bg-accent-100 text-accent-700 dark:bg-accent-900/20 dark:text-accent-300 rounded-full">
+            Computer Vision
+          </span>
+          <span className="px-2 py-1 text-xs font-medium bg-secondary-100 text-secondary-700 dark:bg-secondary-900/20 dark:text-secondary-300 rounded-full">
+            Edge Computing
+          </span>
+        </div>
+      </motion.div>
     </div>
   );
 };

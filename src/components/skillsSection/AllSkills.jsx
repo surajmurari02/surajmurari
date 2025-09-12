@@ -108,19 +108,20 @@ const skills = [
 
 const AllSkills = () => {
   return (
-    <div>
-      <div className="flex items-center justify-center relative gap-2 max-w-[1200px] mx-auto">
+    <div className="w-full max-w-6xl mx-auto">
+      {/* Skills Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
         {skills.map((item, index) => {
           return (
             <motion.div
-              variants={fadeIn("up", `0.${index}`)}
+              variants={fadeIn("up", index * 0.1)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: false, amount: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               key={index}
+              className="flex justify-center"
             >
               <SingleSkill
-                key={index}
                 text={item.skill}
                 imgSvg={<item.icon />}
               />
@@ -128,6 +129,30 @@ const AllSkills = () => {
           );
         })}
       </div>
+
+      {/* Skills Categories (Optional Enhancement) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        className="mt-8 text-center"
+      >
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <span className="px-3 py-1 text-xs font-medium bg-primary-100 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300 rounded-full">
+            Deep Learning
+          </span>
+          <span className="px-3 py-1 text-xs font-medium bg-accent-100 text-accent-700 dark:bg-accent-900/20 dark:text-accent-300 rounded-full">
+            Computer Vision
+          </span>
+          <span className="px-3 py-1 text-xs font-medium bg-secondary-100 text-secondary-700 dark:bg-secondary-900/20 dark:text-secondary-300 rounded-full">
+            Edge Computing
+          </span>
+          <span className="px-3 py-1 text-xs font-medium bg-primary-100 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300 rounded-full">
+            AI Optimization
+          </span>
+        </div>
+      </motion.div>
     </div>
   );
 };
