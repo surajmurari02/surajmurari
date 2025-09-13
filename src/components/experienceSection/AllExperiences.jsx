@@ -70,11 +70,40 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../framerMotion/variants";
 
+// Calculate dynamic experience from start date
+const calculateJobDuration = (startYear, endYear = null) => {
+  const startDate = new Date(`${startYear}-01-01`);
+  const endDate = endYear ? new Date(`${endYear}-12-31`) : new Date();
+  const currentDate = new Date();
+  
+  const totalMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + 
+                     (endDate.getMonth() - startDate.getMonth());
+  const years = Math.floor(totalMonths / 12);
+  
+  if (endYear) {
+    return years > 0 ? `${startYear} - ${endYear} (${years}+ Years)` : `${startYear} - ${endYear}`;
+  } else {
+    // For current positions, calculate from start to now
+    const currentMonths = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + 
+                         (currentDate.getMonth() - startDate.getMonth());
+    const currentYears = Math.floor(currentMonths / 12);
+    const remainingMonths = currentMonths % 12;
+    
+    if (currentYears >= 1) {
+      return `${startYear} - Present (${currentYears}+ Years)`;
+    } else if (remainingMonths >= 1) {
+      return `${startYear} - Present (${remainingMonths}+ Months)`;
+    } else {
+      return `${startYear} - Present`;
+    }
+  }
+};
+
 const experiences = [
   {
     job: "BCA Student",
     company: "D.S.B. Campus, Nainital",
-    date: "2020 - 2023",
+    date: calculateJobDuration(2020, 2023),
     responsibilities: [
       "Studied programming, data structures, and DBMS.",
       "Built AI mini projects with Python and OpenCV.",
@@ -85,7 +114,7 @@ const experiences = [
   {
     job: "MCA Student",
     company: "Bennett University, Greater Noida",
-    date: "2023 - 2025",
+    date: calculateJobDuration(2023, 2025),
     responsibilities: [
       "Specialized in DL, CV, and LLMs.",
       "Built ML pipelines with PyTorch & TensorRT.",
@@ -95,8 +124,8 @@ const experiences = [
   },
   {
     job: "Machine Learning Engineer Intern",
-    company: "Samajh.ai, Noida",
-    date: "Aug 2024 - Present",
+    company: "Samajh.ai, Noida", 
+    date: calculateJobDuration(2023), // Started in Feb 2023, matches portfolio config
     responsibilities: [
       "Optimizing CV models with hardware acceleration.",
       "Deploying real-time AI pipelines on edge & cloud.",
@@ -106,6 +135,7 @@ const experiences = [
 ];
 
 const AllExperiences = () => {
+  
   return (
     <div className="w-full">
       {/* Desktop Layout - Horizontal */}

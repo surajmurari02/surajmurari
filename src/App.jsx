@@ -59,7 +59,6 @@ function App() {
         <NavbarMain />
         <HeroMain />
         <HeroGradient />
-        <SubHeroMain />
         <AboutMeMain />
         <SkillsMain />
         <SubSkills />

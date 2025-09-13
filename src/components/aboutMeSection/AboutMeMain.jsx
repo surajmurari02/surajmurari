@@ -45,25 +45,61 @@ const AboutMeMain = () => {
       </div>
 
       <Container size="lg" className="relative">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.1 }}
-          className="text-center mb-16"
-        >
-          <h2 className={`text-lg font-semibold mb-2 uppercase tracking-wider ${
-            theme === 'light' ? 'text-slate-600' : 'text-dark-text/80'
-          }`}>
-            About Me
-          </h2>
-          <div className={`w-16 h-1 mx-auto rounded-full ${
-            theme === 'light' 
-              ? 'bg-gradient-to-r from-blue-500 to-purple-500' 
-              : 'bg-gradient-to-r from-primary-500 to-accent-500'
-          }`} />
-        </motion.div>
+        {/* Modern Section Header */}
+        <div className="flex flex-col items-center mb-16">
+          {/* Main Title */}
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center ${
+              theme === 'light' 
+                ? 'text-gray-900' 
+                : 'text-white'
+            }`}
+          >
+            About <span className={theme === 'light' ? 'text-blue-600' : 'text-primary-500'}>Me</span>
+          </motion.h2>
+
+          {/* Subtitle */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className={`text-lg md:text-xl text-center max-w-4xl leading-relaxed ${
+              theme === 'light' 
+                ? 'text-gray-600' 
+                : 'text-gray-300'
+            }`}
+          >
+            Passionate about transforming{' '}
+            <span className={`font-semibold ${theme === 'light' ? 'text-purple-600' : 'text-accent-500'}`}>complex problems</span>{' '}
+            into intelligent solutions through{' '}
+            <span className={`font-semibold ${theme === 'light' ? 'text-blue-600' : 'text-primary-500'}`}>cutting-edge AI/ML</span>{' '}
+            technologies.
+          </motion.p>
+
+          {/* Decorative Elements */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex items-center justify-center mt-6 space-x-4"
+          >
+            <div className={`w-12 h-px ${
+              theme === 'light' ? 'bg-gradient-to-r from-transparent via-blue-400 to-transparent' : 'bg-gradient-to-r from-transparent via-primary-500 to-transparent'
+            }`} />
+            <div className={`w-2 h-2 rounded-full ${
+              theme === 'light' ? 'bg-blue-400' : 'bg-primary-500'
+            }`} />
+            <div className={`w-12 h-px ${
+              theme === 'light' ? 'bg-gradient-to-r from-transparent via-blue-400 to-transparent' : 'bg-gradient-to-r from-transparent via-primary-500 to-transparent'
+            }`} />
+          </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Text Content */}

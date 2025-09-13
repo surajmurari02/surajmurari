@@ -2,14 +2,16 @@ import { Link } from "react-scroll";
 import { useSelector } from 'react-redux';
 import { motion } from "framer-motion";
 import { FiDownload, FiArrowRight, FiMail } from "react-icons/fi";
+import { getDynamicStats, portfolioConfig } from '../../config/portfolio';
 
 const AboutMeText = () => {
   const theme = useSelector((state) => state.theme.mode);
+  const dynamicStats = getDynamicStats();
 
   const stats = [
-    { number: "3+", label: "Years Experience" },
-    { number: "25+", label: "Projects Completed" },
-    { number: "10+", label: "Technologies Mastered" },
+    { number: dynamicStats.experience, label: "Experience" },
+    { number: `${dynamicStats.completedProjects}+`, label: "Projects Completed" },
+    { number: `${dynamicStats.technologiesCount}+`, label: "Technologies Mastered" },
   ];
 
   return (
@@ -27,14 +29,14 @@ const AboutMeText = () => {
               ? 'bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent' 
               : 'bg-gradient-to-r from-white to-dark-text bg-clip-text text-transparent'
           }`}>
-            Hi, I'm Suraj Murari
+            Hi, I'm {portfolioConfig.personal.name}
           </h3>
           <p className={`text-lg font-medium ${
             theme === 'light' 
               ? 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
               : 'bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent'
           }`}>
-            Machine Learning Engineer & AI Solutions Architect
+{portfolioConfig.personal.role} & AI Solutions Architect
           </p>
         </motion.div>
 

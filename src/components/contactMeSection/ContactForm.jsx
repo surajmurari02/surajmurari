@@ -1,6 +1,32 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
+
+// Basic security utilities
+const sanitizeInput = (input) => {
+  if (!input) return '';
+  return input
+    .replace(/[<>"']/g, '') // Remove basic HTML characters
+    .trim();
+};
+
+const isValidEmail = (email) => {
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  return emailRegex.test(email) && email.length <= 320;
+};
+
+const containsSuspiciousContent = (text) => {
+  const suspiciousPatterns = [
+    /<script/i, 
+    /javascript:/i, 
+    /\b(select|insert|update|delete)\b.*\b(from|into|where)\b/i,
+    /[;&|`$(){}]/g,
+    /\b(eval|exec|system)\b/i,
+    /(href|src)\s*=\s*["']?(javascript|data):/i
+  ];
+  
+  return suspiciousPatterns.some(pattern => pattern.test(text));
+};
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -10,28 +36,71 @@ const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [focusedField, setFocusedField] = useState("");
+  const [attemptCount, setAttemptCount] = useState(0);
+  const [isBlocked, setIsBlocked] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   const form = useRef();
+
+  // Rate limiting - check on component mount
+  useEffect(() => {
+    const lastAttempt = localStorage.getItem('contactFormLastAttempt');
+    const attempts = parseInt(localStorage.getItem('contactFormAttempts') || '0');
+    
+    if (lastAttempt) {
+      const timeSince = Date.now() - parseInt(lastAttempt);
+      if (timeSince < 15 * 60 * 1000) { // 15 minutes
+        setAttemptCount(attempts);
+        if (attempts >= 3) {
+          setIsBlocked(true);
+          setTimeout(() => {
+            setIsBlocked(false);
+            setAttemptCount(0);
+            localStorage.removeItem('contactFormAttempts');
+            localStorage.removeItem('contactFormLastAttempt');
+          }, 15 * 60 * 1000 - timeSince);
+        }
+      } else {
+        localStorage.removeItem('contactFormAttempts');
+        localStorage.removeItem('contactFormLastAttempt');
+      }
+    }
+  }, []);
 
   const validateForm = () => {
     const newErrors = {};
     
-    if (!name.trim()) {
+    // Sanitize inputs first
+    const cleanName = sanitizeInput(name);
+    const cleanEmail = sanitizeInput(email);
+    const cleanMessage = sanitizeInput(message);
+    
+    if (!cleanName) {
       newErrors.name = "Name is required";
-    } else if (name.trim().length < 2) {
+    } else if (cleanName.length < 2) {
       newErrors.name = "Name must be at least 2 characters";
+    } else if (cleanName.length > 100) {
+      newErrors.name = "Name must be less than 100 characters";
+    } else if (containsSuspiciousContent(cleanName)) {
+      newErrors.name = "Name contains invalid characters";
     }
     
-    if (!email.trim()) {
+    if (!cleanEmail) {
       newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Please enter a valid email";
+    } else if (!isValidEmail(cleanEmail)) {
+      newErrors.email = "Please enter a valid email address";
+    } else if (containsSuspiciousContent(cleanEmail)) {
+      newErrors.email = "Email contains invalid content";
     }
     
-    if (!message.trim()) {
+    if (!cleanMessage) {
       newErrors.message = "Message is required";
-    } else if (message.trim().length < 10) {
+    } else if (cleanMessage.length < 10) {
       newErrors.message = "Message must be at least 10 characters";
+    } else if (cleanMessage.length > 2000) {
+      newErrors.message = "Message must be less than 2000 characters";
+    } else if (containsSuspiciousContent(cleanMessage)) {
+      newErrors.message = "Message contains prohibited content";
     }
     
     setErrors(newErrors);
@@ -41,12 +110,31 @@ const ContactForm = () => {
   const sendEmail = async (e) => {
     e.preventDefault();
     
+    // Check if blocked by rate limiting
+    if (isBlocked) {
+      setErrors({ submit: "Too many attempts. Please wait before trying again." });
+      return;
+    }
+    
+    // Check honeypot (bot detection)
+    if (honeypot) {
+      console.warn('Bot detected via honeypot');
+      setErrors({ submit: "Please try again." });
+      return;
+    }
+    
     if (!validateForm()) return;
     
     setIsLoading(true);
     setSuccess("");
     
     try {
+      // Sanitize form data before sending
+      const formData = new FormData();
+      formData.append('from_name', sanitizeInput(name));
+      formData.append('from_email', sanitizeInput(email));
+      formData.append('message', sanitizeInput(message));
+      
       await emailjs.sendForm("service_pkunaql", "template_oaz6lq9", form.current, {
         publicKey: "vnCbWhvWBivub_VSp",
       });
@@ -56,9 +144,32 @@ const ContactForm = () => {
       setMessage("");
       setSuccess("🎉 Message sent successfully! I'll get back to you soon.");
       setErrors({});
+      
+      // Reset rate limiting on successful send
+      localStorage.removeItem('contactFormAttempts');
+      localStorage.removeItem('contactFormLastAttempt');
+      setAttemptCount(0);
     } catch (error) {
       console.log("FAILED...", error.text);
-      setErrors({ submit: "Failed to send message. Please try again." });
+      
+      // Update rate limiting on failure
+      const newAttemptCount = attemptCount + 1;
+      setAttemptCount(newAttemptCount);
+      localStorage.setItem('contactFormAttempts', newAttemptCount.toString());
+      localStorage.setItem('contactFormLastAttempt', Date.now().toString());
+      
+      if (newAttemptCount >= 3) {
+        setIsBlocked(true);
+        setErrors({ submit: "Too many failed attempts. Please wait 15 minutes before trying again." });
+        setTimeout(() => {
+          setIsBlocked(false);
+          setAttemptCount(0);
+          localStorage.removeItem('contactFormAttempts');
+          localStorage.removeItem('contactFormLastAttempt');
+        }, 15 * 60 * 1000);
+      } else {
+        setErrors({ submit: `Failed to send message. Please try again. (${newAttemptCount}/3 attempts)` });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -96,6 +207,17 @@ const ContactForm = () => {
       </AnimatePresence>
 
       <form ref={form} onSubmit={sendEmail} className="space-y-4">
+        {/* Honeypot field - hidden from users but visible to bots */}
+        <input
+          type="text"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          style={{ display: 'none' }}
+          tabIndex="-1"
+          autoComplete="off"
+          aria-hidden="true"
+        />
         {/* Name Field */}
         <div className="relative">
           <motion.input
@@ -207,17 +329,31 @@ const ContactForm = () => {
           </AnimatePresence>
         </div>
 
+        {/* Rate limiting warning */}
+        {attemptCount > 0 && !isBlocked && (
+          <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-xl p-3 text-yellow-400 text-sm text-center">
+            ⚠️ {attemptCount}/3 attempts used. Please be careful with submissions.
+          </div>
+        )}
+
+        {/* Blocked warning */}
+        {isBlocked && (
+          <div className="bg-red-500/20 border border-red-500/30 rounded-xl p-3 text-red-400 text-sm text-center">
+            🛑 Too many attempts. Please wait 15 minutes before trying again.
+          </div>
+        )}
+
         {/* Submit Button */}
         <motion.button
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || isBlocked}
           className={`w-full h-12 rounded-xl font-semibold text-lg transition-all duration-300 ${
-            isLoading 
+            isLoading || isBlocked
               ? 'bg-gray-600 cursor-not-allowed' 
               : 'bg-gradient-to-r from-cyan to-orange hover:from-cyan/80 hover:to-orange/80 hover:shadow-lg hover:shadow-cyan/25'
           }`}
-          whileHover={!isLoading ? { scale: 1.02 } : {}}
-          whileTap={!isLoading ? { scale: 0.98 } : {}}
+          whileHover={!isLoading && !isBlocked ? { scale: 1.02 } : {}}
+          whileTap={!isLoading && !isBlocked ? { scale: 0.98 } : {}}
         >
           {isLoading ? (
             <div className="flex items-center justify-center gap-3">

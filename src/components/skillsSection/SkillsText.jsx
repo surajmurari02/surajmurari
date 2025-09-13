@@ -6,22 +6,6 @@ const SkillsText = () => {
 
   return (
     <div className="flex flex-col items-center">
-      {/* Badge */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6 ${
-          theme === 'light' 
-            ? 'bg-primary-100 text-primary-700 border border-primary-200' 
-            : 'bg-primary-900/20 text-primary-300 border border-primary-800/30'
-        }`}
-      >
-        <span className="mr-2">🚀</span>
-        Technical Expertise
-      </motion.div>
-
       {/* Main Title */}
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}

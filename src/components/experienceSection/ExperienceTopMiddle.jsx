@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import { FiBriefcase } from 'react-icons/fi';
+import { SiNvidia, SiPython, SiPytorch, SiIntel } from 'react-icons/si';
 
 const ExperienceTopMiddle = () => {
   const theme = useSelector((state) => state.theme.mode);
@@ -29,15 +29,6 @@ const ExperienceTopMiddle = () => {
             : 'bg-gradient-to-r from-primary-500 via-accent-500 to-cyan'
         }`} />
 
-        {/* Corner Badge */}
-        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
-          theme === 'light' 
-            ? 'bg-blue-100 text-blue-600' 
-            : 'bg-primary-900/60 text-primary-300'
-        }`}>
-          <FiBriefcase className="inline w-3 h-3 mr-1" />
-          Tech
-        </div>
         
         {/* Decorative corner elements */}
         <div className={`absolute top-0 left-0 w-16 h-16 rounded-br-3xl ${
@@ -79,26 +70,30 @@ const ExperienceTopMiddle = () => {
                 </div>
                 
                 {/* Orbiting Elements */}
-                <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
-                  <div className={`absolute top-2 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center ${
-                    theme === 'light' ? 'bg-orange-200 text-orange-700' : 'bg-primary-700 text-primary-200'
+                <div className="absolute inset-0 animate-spin" style={{ animationDuration: '15s' }}>
+                  <div className={`absolute top-1 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110 ${
+                    theme === 'light' ? 'bg-gradient-to-br from-green-400 to-green-600 text-white shadow-green-500/40' : 'bg-gradient-to-br from-green-500 to-green-700 text-white shadow-green-500/60'
                   }`}>
-                    <span className="text-sm">⚡</span>
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent" />
+                    <SiNvidia className="text-base drop-shadow-md relative z-10" />
                   </div>
-                  <div className={`absolute bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center ${
-                    theme === 'light' ? 'bg-red-200 text-red-700' : 'bg-accent-700 text-accent-200'
+                  <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110 ${
+                    theme === 'light' ? 'bg-gradient-to-br from-blue-400 to-blue-600 text-white shadow-blue-500/40' : 'bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-blue-500/60'
                   }`}>
-                    <span className="text-sm">🔬</span>
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent" />
+                    <SiPython className="text-base drop-shadow-md relative z-10" />
                   </div>
-                  <div className={`absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center ${
-                    theme === 'light' ? 'bg-pink-200 text-pink-700' : 'bg-cyan/70 text-dark-bg'
+                  <div className={`absolute left-1 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110 ${
+                    theme === 'light' ? 'bg-gradient-to-br from-orange-400 to-red-500 text-white shadow-orange-500/40' : 'bg-gradient-to-br from-orange-500 to-red-600 text-white shadow-orange-500/60'
                   }`}>
-                    <span className="text-sm">📊</span>
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent" />
+                    <SiPytorch className="text-base drop-shadow-md relative z-10" />
                   </div>
-                  <div className={`absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center ${
-                    theme === 'light' ? 'bg-yellow-200 text-yellow-700' : 'bg-orange/70 text-dark-bg'
+                  <div className={`absolute right-1 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110 ${
+                    theme === 'light' ? 'bg-gradient-to-br from-cyan-400 to-blue-600 text-white shadow-cyan-500/40' : 'bg-gradient-to-br from-cyan-500 to-blue-700 text-white shadow-cyan-500/60'
                   }`}>
-                    <span className="text-sm">🎯</span>
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent" />
+                    <SiIntel className="text-base drop-shadow-md relative z-10" />
                   </div>
                 </div>
               </div>

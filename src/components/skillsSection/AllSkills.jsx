@@ -1,156 +1,128 @@
 import SingleSkill from "./SingleSkill";
-import { FaHtml5 } from "react-icons/fa";
-import { FaCss3Alt } from "react-icons/fa";
-import { IoLogoJavascript } from "react-icons/io";
-import { SiTypescript } from "react-icons/si";
-import { FaReact } from "react-icons/fa";
-import { SiRedux } from "react-icons/si";
-import { SiNextdotjs } from "react-icons/si";
-import { RiTailwindCssFill } from "react-icons/ri";
-import { motion } from "framer-motion";
+import LoadMoreSkill from "./LoadMoreSkill";
+import { motion, AnimatePresence } from "framer-motion";
+import { useSelector } from 'react-redux';
+import { useState, useRef } from 'react';
 import { fadeIn } from "../../framerMotion/variants";
-
-import { SiPython, SiPytorch, SiOpencv, SiNvidia, SiDocker, SiFastapi, SiMongodb, SiTensorflow, SiOpenai } from "react-icons/si";
-import { SiIntel } from "react-icons/si";
-// import Nvidia_CUDA_Logo from "../../assets/icons/Nvidia_CUDA.svg";
-
-// const skills = [
-//   {
-//     skill: "HTML",
-//     icon: FaHtml5,
-//   },
-//   {
-//     skill: "CSS",
-//     icon: FaCss3Alt,
-//   },
-//   {
-//     skill: "JavaScript",
-//     icon: IoLogoJavascript,
-//   },
-//   {
-//     skill: "TypeScript",
-//     icon: SiTypescript,
-//   },
-//   {
-//     skill: "ReactJS",
-//     icon: FaReact,
-//   },
-//   {
-//     skill: "Redux",
-//     icon: SiRedux,
-//   },
-//   {
-//     skill: "NextJS",
-//     icon: SiNextdotjs,
-//   },
-//   {
-//     skill: "TailwindCSS",
-//     icon: RiTailwindCssFill,
-//   },
-// ];
-
-const skills = [
-  {
-    skill: "Python",
-    icon: SiPython,
-  },
-  {
-    skill: "PyTorch",
-    icon: SiPytorch,
-  },
-  {
-    skill: "OpenCV",
-    icon: SiOpencv,
-  },
-  {
-    skill: "TensorRT",
-    icon: SiNvidia,
-  },
-  {
-    skill: "CUDA",
-    icon: SiNvidia,
-  },
-  {
-    skill: "DeepStream",
-    icon: SiNvidia,
-  },
-  {
-    skill: "OpenVINO",
-    icon: SiIntel,
-  },
-  {
-    skill: "Docker",
-    icon: SiDocker,
-  },
-    {
-    skill: "Openai",
-    icon: SiOpenai,
-  },
-  // import { SiPython, SiPytorch, SiOpencv, SiNvidia, SiDocker, SiFastapi, SiMongodb, SiTensorflow, SiOpenai } from "react-icons/si";
-
-  // {
-  //   skill: "Hugging Face",
-  //   icon: FaReact,
-  // },
-  // {
-  //   skill: "Flask",
-  //   icon: SiRedux,
-  // },
-  // {
-  //   skill: "FastAPI",
-  //   icon: SiNextdotjs,
-  // },
-  // {
-  //   skill: "Streamlit",
-  //   icon: RiTailwindCssFill,
-  // },
-];
+import { portfolioConfig } from "../../config/portfolio";
+import { getIconComponent } from "../../utils/iconMapper";
 
 const AllSkills = () => {
+  const theme = useSelector((state) => state.theme.mode);
+  const allSkills = portfolioConfig.skills.main;
+  const categories = portfolioConfig.skills.categories;
+  const [visibleSkills, setVisibleSkills] = useState(9);
+  const skillsSectionRef = useRef(null);
+  
+  const skills = allSkills.slice(0, visibleSkills);
+  const hasMoreSkills = visibleSkills < allSkills.length;
+  const canShowLess = visibleSkills > 9;
+  
+  const loadMoreSkills = () => {
+    setVisibleSkills(prev => Math.min(prev + 9, allSkills.length));
+  };
+  
+  const showLessSkills = () => {
+    setVisibleSkills(9);
+    // Scroll to top of main skills section (same as navbar behavior)
+    setTimeout(() => {
+      const skillsSection = document.getElementById('skills');
+      if (skillsSection) {
+        skillsSection.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      }
+    }, 100);
+  };
+
   return (
-    <div className="w-full max-w-6xl mx-auto">
-      {/* Skills Grid */}
+    <div ref={skillsSectionRef} className="w-full max-w-6xl mx-auto">
+      {/* Skills Grid - Dynamic Loading */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
-        {skills.map((item, index) => {
-          return (
-            <motion.div
-              variants={fadeIn("up", index * 0.1)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-              key={index}
-              className="flex justify-center"
-            >
-              <SingleSkill
-                text={item.skill}
-                imgSvg={<item.icon />}
-              />
-            </motion.div>
-          );
-        })}
+        <AnimatePresence mode="popLayout">
+          {skills.map((skill, index) => {
+            const IconComponent = getIconComponent(skill.icon);
+            
+            return (
+              <motion.div
+                key={`skill-${index}`}
+                variants={fadeIn("up", index * 0.05)}
+                initial="hidden"
+                animate="show"
+                exit={{
+                  opacity: 0,
+                  scale: 0.8,
+                  transition: { duration: 0.3 }
+                }}
+                layout
+                className="flex justify-center"
+              >
+                <SingleSkill
+                  text={skill.name}
+                  imgSvg={<IconComponent />}
+                />
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+        
+        {/* Load More / Show Less Button in Grid */}
+        {(hasMoreSkills || canShowLess) && (
+          <motion.div
+            key="load-more-button"
+            variants={fadeIn("up", 0.1)}
+            initial="hidden"
+            animate="show"
+            layout
+            className="flex justify-center"
+          >
+            <LoadMoreSkill
+              onClick={hasMoreSkills ? loadMoreSkills : showLessSkills}
+              isLoadMore={hasMoreSkills}
+              remainingCount={allSkills.length - visibleSkills}
+            />
+          </motion.div>
+        )}
       </div>
 
-      {/* Skills Categories (Optional Enhancement) */}
+      {/* Dynamic Skills Categories - Larger Badges */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.8 }}
-        className="mt-8 text-center"
+        className="mt-12 text-center"
       >
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <span className="px-3 py-1 text-xs font-medium bg-primary-100 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300 rounded-full">
-            Deep Learning
-          </span>
-          <span className="px-3 py-1 text-xs font-medium bg-accent-100 text-accent-700 dark:bg-accent-900/20 dark:text-accent-300 rounded-full">
-            Computer Vision
-          </span>
-          <span className="px-3 py-1 text-xs font-medium bg-secondary-100 text-secondary-700 dark:bg-secondary-900/20 dark:text-secondary-300 rounded-full">
-            Edge Computing
-          </span>
-          <span className="px-3 py-1 text-xs font-medium bg-primary-100 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300 rounded-full">
-            AI Optimization
-          </span>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          {categories.map((category, index) => {
+            const colorClasses = {
+              primary: theme === 'light' 
+                ? 'bg-primary-100 text-primary-700 border border-primary-200 hover:bg-primary-200' 
+                : 'bg-primary-900/20 text-primary-300 border border-primary-800/30 hover:bg-primary-800/30',
+              accent: theme === 'light' 
+                ? 'bg-accent-100 text-accent-700 border border-accent-200 hover:bg-accent-200' 
+                : 'bg-accent-900/20 text-accent-300 border border-accent-800/30 hover:bg-accent-800/30',
+              secondary: theme === 'light' 
+                ? 'bg-purple-100 text-purple-700 border border-purple-200 hover:bg-purple-200' 
+                : 'bg-purple-900/20 text-purple-300 border border-purple-800/30 hover:bg-purple-800/30'
+            };
+
+            return (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 cursor-pointer ${colorClasses[category.color]}`}
+              >
+                {category.name}
+              </motion.span>
+            );
+          })}
         </div>
       </motion.div>
     </div>

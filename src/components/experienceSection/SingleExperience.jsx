@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useSelector } from 'react-redux';
-import { FiCalendar, FiMapPin, FiBriefcase } from 'react-icons/fi';
+import { FiCalendar, FiMapPin } from 'react-icons/fi';
 
 const SingleExperience = ({ experience }) => {
   const theme = useSelector((state) => state.theme.mode);
@@ -9,7 +9,7 @@ const SingleExperience = ({ experience }) => {
     <motion.div
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`relative group min-h-[420px] flex flex-col p-7 rounded-3xl border backdrop-blur-md transition-all duration-500 overflow-hidden ${
+      className={`relative group min-h-[320px] flex flex-col p-6 rounded-2xl border backdrop-blur-md transition-all duration-500 overflow-hidden ${
         theme === 'light' 
           ? 'bg-white/95 border-blue-200/60 shadow-lg hover:shadow-2xl hover:shadow-blue-500/15 hover:border-blue-300/80' 
           : 'bg-dark-card/90 border-primary-500/40 shadow-glow-sm hover:shadow-glow-lg hover:border-primary-400/60'
@@ -29,15 +29,6 @@ const SingleExperience = ({ experience }) => {
           : 'bg-gradient-to-r from-primary-500 via-accent-500 to-cyan'
       }`} />
 
-      {/* Corner Badge */}
-      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
-        theme === 'light' 
-          ? 'bg-blue-100 text-blue-600' 
-          : 'bg-primary-900/60 text-primary-300'
-      }`}>
-        <FiBriefcase className="inline w-3 h-3 mr-1" />
-        Role
-      </div>
 
       <div className="relative z-10 flex flex-col h-full">
         {/* Header Section with Icons */}
@@ -123,25 +114,6 @@ const SingleExperience = ({ experience }) => {
           </div>
         </div>
 
-        {/* Bottom Stats/Impact Section */}
-        <div className={`mt-6 pt-4 border-t ${
-          theme === 'light' ? 'border-slate-200' : 'border-dark-border'
-        }`}>
-          <div className="flex items-center justify-between">
-            <span className={`text-xs uppercase tracking-wide font-medium ${
-              theme === 'light' ? 'text-slate-500' : 'text-dark-text/60'
-            }`}>
-              Impact Delivered
-            </span>
-            <div className="flex gap-1">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <div key={star} className={`w-2 h-2 rounded-full ${
-                  theme === 'light' ? 'bg-blue-300' : 'bg-primary-400'
-                }`} />
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </motion.div>
   );

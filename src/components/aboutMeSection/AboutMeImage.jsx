@@ -36,19 +36,6 @@ const AboutMeImage = () => {
             : 'bg-gradient-to-t from-primary-900/30 via-transparent to-accent-900/20'
         }`} />
 
-        {/* Floating Badge */}
-        <motion.div 
-          className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md ${
-            theme === 'light' 
-              ? 'bg-white/80 text-slate-700'
-              : 'bg-dark-card/80 text-dark-text border border-primary-500/30'
-          }`}
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          AI Engineer
-        </motion.div>
       </div>
 
       {/* Modern Decorative Elements */}

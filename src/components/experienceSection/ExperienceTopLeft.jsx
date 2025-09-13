@@ -24,11 +24,12 @@
 
 import { motion } from "framer-motion";
 import { useSelector } from 'react-redux';
-import { FiBriefcase } from 'react-icons/fi';
+import { getDynamicStats } from '../../config/portfolio';
 import ExperienceInfo from "./ExperienceInfo";
 
 const ExperienceTopLeft = () => {
   const theme = useSelector((state) => state.theme.mode);
+  const dynamicStats = getDynamicStats();
 
   return (
     <motion.div
@@ -53,15 +54,6 @@ const ExperienceTopLeft = () => {
           : 'bg-gradient-to-r from-primary-500 via-accent-500 to-cyan'
       }`} />
 
-      {/* Corner Badge */}
-      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
-        theme === 'light' 
-          ? 'bg-blue-100 text-blue-600' 
-          : 'bg-primary-900/60 text-primary-300'
-      }`}>
-        <FiBriefcase className="inline w-3 h-3 mr-1" />
-        Timeline
-      </div>
       
       <div className="relative z-10 flex flex-col gap-6 w-full max-w-sm mx-auto">
         {/* Since badge */}
@@ -75,11 +67,11 @@ const ExperienceTopLeft = () => {
 
         {/* Stats row */}
         <div className="flex justify-center items-center gap-4">
-          <ExperienceInfo number="1" text="Year" />
+          <ExperienceInfo number={dynamicStats.experience.split(' ')[0]} text={dynamicStats.experience.split(' ')[1]} />
           <div className={`w-8 h-px ${
             theme === 'light' ? 'bg-gradient-to-r from-orange-400 to-red-400' : 'bg-gradient-to-r from-orange to-lightOrange'
           }`} />
-          <ExperienceInfo number="5+" text="AI Models" />
+          <ExperienceInfo number={`${dynamicStats.completedProjects}+`} text="Projects" />
         </div>
 
         {/* Description */}

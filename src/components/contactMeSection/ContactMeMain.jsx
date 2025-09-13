@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
+import { useSelector } from 'react-redux';
 import ContactMeLeft from "./ContactMeLeft";
 import ContactMeRight from "./ContactMeRight";
 
 const ContactMeMain = () => {
+  const theme = useSelector((state) => state.theme.mode);
+
   return (
     <motion.div
       id="contact"
@@ -15,21 +18,55 @@ const ContactMeMain = () => {
       {/* Modern gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan/5 to-orange/5 rounded-3xl blur-3xl -z-10"></div>
       
-      {/* Header with modern styling */}
-      <motion.div 
-        className="text-center mb-16"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-cyan via-orange to-cyan bg-clip-text text-transparent mb-4">
-          Let's Connect
-        </h2>
-        <p className="text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto">
-          Ready to bring your ideas to life? Let's discuss how we can work together.
-        </p>
-      </motion.div>
+      {/* Modern Section Header */}
+      <div className="flex flex-col items-center mb-16">
+        {/* Main Title */}
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center ${
+            theme === 'light' 
+              ? 'text-gray-900' 
+              : 'text-white'
+          }`}
+        >
+          Let's <span className="text-cyan">Connect</span>
+        </motion.h2>
+
+        {/* Subtitle */}
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className={`text-lg md:text-xl text-center max-w-4xl leading-relaxed ${
+            theme === 'light' 
+              ? 'text-gray-600' 
+              : 'text-gray-300'
+          }`}
+        >
+          Ready to transform your{' '}
+          <span className="font-semibold text-orange">innovative ideas</span>{' '}
+          into reality? Let's discuss how we can{' '}
+          <span className="font-semibold text-cyan">collaborate</span>{' '}
+          to build something amazing together.
+        </motion.p>
+
+        {/* Decorative Elements */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="flex items-center justify-center mt-6 space-x-4"
+        >
+          <div className="w-12 h-px bg-gradient-to-r from-transparent via-cyan to-transparent" />
+          <div className="w-2 h-2 rounded-full bg-cyan" />
+          <div className="w-12 h-px bg-gradient-to-r from-transparent via-cyan to-transparent" />
+        </motion.div>
+      </div>
 
       {/* Main content with modern glass morphism effect */}
       <motion.div 

@@ -22,7 +22,6 @@
 
 import { motion } from "framer-motion";
 import { useSelector } from 'react-redux';
-import { FiBriefcase } from 'react-icons/fi';
 
 const ExperienceTopRight = () => {
   const theme = useSelector((state) => state.theme.mode);
@@ -50,15 +49,6 @@ const ExperienceTopRight = () => {
           : 'bg-gradient-to-r from-primary-500 via-accent-500 to-cyan'
       }`} />
 
-      {/* Corner Badge */}
-      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
-        theme === 'light' 
-          ? 'bg-blue-100 text-blue-600' 
-          : 'bg-primary-900/60 text-primary-300'
-      }`}>
-        <FiBriefcase className="inline w-3 h-3 mr-1" />
-        Skills
-      </div>
             
       <div className="relative z-10 w-full max-w-sm mx-auto">
         {/* Header with icon */}
