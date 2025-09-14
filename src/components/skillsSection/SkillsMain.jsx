@@ -64,11 +64,11 @@ const SkillsMain = () => {
         </div>
       </Container>
 
-      {/* Decorative Lines */}
-      <div className={`absolute left-0 top-1/3 w-16 h-px ${
+      {/* Decorative Lines - Hidden on mobile */}
+      <div className={`absolute left-0 top-1/3 w-16 h-px hidden md:block ${
         theme === 'light' ? 'bg-gradient-to-r from-primary-400 to-transparent' : 'bg-gradient-to-r from-primary-500 to-transparent'
       }`} />
-      <div className={`absolute right-0 bottom-1/3 w-16 h-px ${
+      <div className={`absolute right-0 bottom-1/3 w-16 h-px hidden md:block ${
         theme === 'light' ? 'bg-gradient-to-l from-accent-400 to-transparent' : 'bg-gradient-to-l from-accent-500 to-transparent'
       }`} />
     </section>

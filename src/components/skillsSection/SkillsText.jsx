@@ -12,7 +12,7 @@ const SkillsText = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center ${
+        className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-center ${
           theme === 'light' 
             ? 'text-gray-900' 
             : 'text-white'
@@ -27,19 +27,21 @@ const SkillsText = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className={`text-lg md:text-xl text-center max-w-4xl leading-relaxed ${
+        className={`text-base sm:text-lg md:text-xl text-center max-w-4xl leading-relaxed px-4 sm:px-0 ${
           theme === 'light' 
             ? 'text-gray-600' 
             : 'text-gray-300'
         }`}
       >
-        I not only work with these{' '}
-        <span className="font-semibold text-accent-500">AI/ML technologies</span>{' '}
-        but specialize in using them with{' '}
+        <span className="hidden sm:inline">I not only work with these{' '}</span>
+        <span className="sm:hidden">Specialized in{' '}</span>
+        <span className="font-semibold text-accent-500">AI/ML technologies</span>
+        <span className="hidden sm:inline">{' '}but specialize in using them with{' '}</span>
+        <span className="sm:hidden"> with{' '}</span>
         <span className="font-semibold text-primary-500">best practices</span>{' '}
-        to deliver optimized, production-ready solutions. I've been applying these tools across{' '}
+        to deliver optimized, production-ready solutions<span className="hidden sm:inline">. I've been applying these tools across{' '}
         <span className="font-semibold text-accent-500">real-world projects</span>{' '}
-        to build intelligent systems for edge and cloud deployment.
+        to build intelligent systems for edge and cloud deployment</span><span className="sm:hidden"> for real-world impact</span>.
       </motion.p>
 
       {/* Decorative Elements */}

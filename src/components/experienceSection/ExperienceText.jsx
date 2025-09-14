@@ -12,7 +12,7 @@ const ExperienceText = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center ${
+        className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-center ${
           theme === 'light' 
             ? 'text-gray-900' 
             : 'text-white'
@@ -27,13 +27,19 @@ const ExperienceText = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className={`text-lg md:text-xl text-center max-w-4xl leading-relaxed mb-6 ${
+        className={`text-base sm:text-lg md:text-xl text-center max-w-4xl leading-relaxed mb-4 sm:mb-6 px-4 sm:px-0 ${
           theme === 'light' 
             ? 'text-gray-600' 
             : 'text-gray-300'
         }`}
       >
-        Building <span className="font-semibold text-orange">innovative AI solutions</span> with{' '}
+        <span className="hidden sm:inline">Building </span>
+        <span className="font-semibold text-orange">
+          <span className="sm:hidden">Creating </span>
+          <span className="hidden sm:inline">innovative </span>AI solutions
+        </span>
+        <span className="hidden sm:inline"> with{' '}</span>
+        <span className="sm:hidden"> using{' '}</span>
         <span className="font-semibold text-cyan">cutting-edge technologies</span>
       </motion.p>
 

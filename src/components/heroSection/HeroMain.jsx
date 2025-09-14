@@ -59,8 +59,8 @@ const HeroMain = () => {
         />
       </div>
 
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 -z-10 opacity-[0.02]">
+      {/* Subtle grid pattern - Hidden on mobile */}
+      <div className="absolute inset-0 -z-10 opacity-[0.02] hidden md:block">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
@@ -70,7 +70,7 @@ const HeroMain = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16"
+          className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 lg:mb-16"
         >
           {/* Hero Text Section */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
@@ -105,7 +105,7 @@ const HeroMain = () => {
           </div>
 
           {/* Core Strengths Cards */}
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {highlights.map((highlight, index) => (
               <motion.div
                 key={index}
@@ -114,7 +114,7 @@ const HeroMain = () => {
                 animate="show"
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.4 }}
-                className={`relative group p-4 lg:p-5 h-full min-h-[160px] rounded-2xl border backdrop-blur-md transition-all duration-500 ${
+                className={`relative group p-3 sm:p-4 lg:p-5 h-full min-h-[140px] sm:min-h-[160px] rounded-2xl border backdrop-blur-md transition-all duration-500 ${
                   theme === 'light' 
                     ? 'bg-white/90 border-blue-200/60 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300/80' 
                     : 'bg-dark-card/90 border-primary-500/30 shadow-lg hover:shadow-xl hover:shadow-primary-500/20 hover:border-primary-400/50'
@@ -173,9 +173,9 @@ const HeroMain = () => {
         </motion.div>
       </Container>
 
-      {/* Enhanced Decorative Elements */}
+      {/* Enhanced Decorative Elements - Hidden on mobile */}
       <motion.div 
-        className="absolute top-1/4 left-6 w-1 bg-gradient-to-b from-cyan to-transparent rounded-full"
+        className="absolute top-1/4 left-6 w-1 bg-gradient-to-b from-cyan to-transparent rounded-full hidden md:block"
         animate={{
           height: [80, 120, 80],
           opacity: [0.4, 0.8, 0.4]
@@ -188,7 +188,7 @@ const HeroMain = () => {
       />
       
       <motion.div 
-        className="absolute bottom-1/4 right-6 w-1 bg-gradient-to-t from-orange to-transparent rounded-full"
+        className="absolute bottom-1/4 right-6 w-1 bg-gradient-to-t from-orange to-transparent rounded-full hidden md:block"
         animate={{
           height: [60, 100, 60],
           opacity: [0.4, 0.8, 0.4]
@@ -201,9 +201,9 @@ const HeroMain = () => {
         }}
       />
 
-      {/* Floating geometric shapes */}
+      {/* Floating geometric shapes - Hidden on mobile */}
       <motion.div
-        className="absolute top-1/3 right-1/4 w-3 h-3 border border-cyan/30 rotate-45"
+        className="absolute top-1/3 right-1/4 w-3 h-3 border border-cyan/30 rotate-45 hidden lg:block"
         animate={{
           rotate: [45, 405],
           scale: [1, 1.2, 1],
@@ -217,7 +217,7 @@ const HeroMain = () => {
       />
 
       <motion.div
-        className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-gradient-to-r from-orange/40 to-cyan/40 rounded-full"
+        className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-gradient-to-r from-orange/40 to-cyan/40 rounded-full hidden lg:block"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.3, 0.7, 0.3]

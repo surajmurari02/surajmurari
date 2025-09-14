@@ -15,7 +15,7 @@ const AboutMeImage = () => {
       onHoverEnd={() => setIsHovered(false)}
     >
       {/* Main Image Container with Glassmorphism */}
-      <div className={`relative w-80 h-96 rounded-3xl overflow-hidden backdrop-blur-md border transition-all duration-500 ${
+      <div className={`relative w-64 h-80 sm:w-80 sm:h-96 rounded-3xl overflow-hidden backdrop-blur-md border transition-all duration-500 ${
         theme === 'light' 
           ? 'bg-white/20 border-white/30 shadow-xl group-hover:shadow-2xl group-hover:shadow-blue-500/20'
           : 'bg-dark-card/30 border-primary-500/30 shadow-xl group-hover:shadow-2xl group-hover:shadow-primary-500/30'
@@ -38,11 +38,11 @@ const AboutMeImage = () => {
 
       </div>
 
-      {/* Modern Decorative Elements */}
+      {/* Modern Decorative Elements - Simplified for mobile */}
       <div className="absolute inset-0 -z-10">
-        {/* Gradient Background Shape */}
+        {/* Gradient Background Shape - Hidden on small mobile */}
         <motion.div 
-          className={`absolute -bottom-6 -left-6 w-72 h-80 rounded-3xl transition-all duration-700 ${
+          className={`absolute -bottom-6 -left-6 w-56 h-64 sm:w-72 sm:h-80 rounded-3xl transition-all duration-700 hidden xs:block ${
             theme === 'light'
               ? 'bg-gradient-to-br from-blue-400/30 to-purple-400/30'
               : 'bg-gradient-to-br from-primary-500/30 to-accent-500/30'
@@ -54,9 +54,9 @@ const AboutMeImage = () => {
           transition={{ duration: 0.7 }}
         />
         
-        {/* Secondary Shape */}
+        {/* Secondary Shape - Hidden on mobile */}
         <motion.div 
-          className={`absolute -top-4 -right-4 w-32 h-32 rounded-full transition-all duration-700 ${
+          className={`absolute -top-4 -right-4 w-32 h-32 rounded-full transition-all duration-700 hidden md:block ${
             theme === 'light'
               ? 'bg-gradient-to-br from-cyan-400/20 to-blue-400/20'
               : 'bg-gradient-to-br from-cyan/20 to-primary-400/20'
@@ -68,9 +68,9 @@ const AboutMeImage = () => {
           transition={{ duration: 0.8 }}
         />
 
-        {/* Floating Particles */}
+        {/* Floating Particles - Hidden on mobile */}
         <motion.div 
-          className={`absolute top-8 left-8 w-2 h-2 rounded-full ${
+          className={`absolute top-8 left-8 w-2 h-2 rounded-full hidden sm:block ${
             theme === 'light' ? 'bg-blue-400' : 'bg-primary-400'
           }`}
           animate={{
@@ -81,7 +81,7 @@ const AboutMeImage = () => {
         />
         
         <motion.div 
-          className={`absolute bottom-12 right-12 w-1 h-1 rounded-full ${
+          className={`absolute bottom-12 right-12 w-1 h-1 rounded-full hidden sm:block ${
             theme === 'light' ? 'bg-purple-400' : 'bg-accent-400'
           }`}
           animate={{
@@ -92,8 +92,8 @@ const AboutMeImage = () => {
         />
       </div>
 
-      {/* Glow Effect */}
-      <div className={`absolute inset-0 -z-20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 ${
+      {/* Glow Effect - Reduced intensity on mobile */}
+      <div className={`absolute inset-0 -z-20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 hidden sm:block ${
         theme === 'light'
           ? 'bg-gradient-to-br from-blue-400/40 to-purple-400/40'
           : 'bg-gradient-to-br from-primary-500/40 to-accent-500/40'

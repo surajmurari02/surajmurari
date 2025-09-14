@@ -18,7 +18,7 @@ const NavbarLinks = () => {
   const isBlogPage = location.pathname.startsWith('/blog');
 
   return (
-    <ul className={`flex xl:flex-row sm:flex-col gap-8 xl:gap-10 font-body font-medium xl:relative sm:absolute sm:top-[120%] text-center left-[50%] -translate-x-[50%] xl:text-lg lg:text-xl sm:text-lg bg-transparent sm:w-full py-4 transition-colors duration-300 sm:z-40 ${
+    <ul className={`flex xl:flex-row flex-col gap-4 xl:gap-10 font-body font-medium xl:text-lg text-lg transition-colors duration-300 ${
       theme === 'light' ? 'text-slate-700' : 'text-gray-200'
     }`}>
       {/* Portfolio Navigation Links - Always show all sections */}
@@ -26,17 +26,17 @@ const NavbarLinks = () => {
         // On home page, portfolio sections use scroll links
         <>
           {links.map((link, index) => (
-            <li key={index} className="group">
+            <li key={index} className="group xl:block">
               <Link
                 spy={true}
                 smooth={true}
                 duration={800}
                 offset={-130}
                 to={link.section}
-                className={`cursor-pointer transition-all duration-500 focus:outline-none focus:ring-2 rounded px-2 py-1 ${
+                className={`block cursor-pointer transition-all duration-500 focus:outline-none focus:ring-2 rounded-lg xl:px-2 xl:py-1 px-4 py-3 xl:text-center text-left xl:min-h-0 min-h-[48px] flex items-center ${
                   theme === 'light' 
-                    ? 'text-slate-700 hover:text-blue-600 focus:text-blue-600 focus:ring-blue-500/50' 
-                    : 'text-gray-200 hover:text-blue-400 focus:text-blue-400 focus:ring-blue-500/50'
+                    ? 'text-slate-700 hover:text-blue-600 focus:text-blue-600 focus:ring-blue-500/50 xl:hover:bg-transparent hover:bg-blue-50' 
+                    : 'text-gray-200 hover:text-blue-400 focus:text-blue-400 focus:ring-blue-500/50 xl:hover:bg-transparent hover:bg-gray-800/50'
                 }`}
                 tabIndex={0}
                 role="button"
@@ -44,7 +44,7 @@ const NavbarLinks = () => {
               >
                 {link.link}
               </Link>
-              <div className={`mx-auto w-0 group-hover:w-full group-focus-within:w-full h-[2px] transition-all duration-500 ${
+              <div className={`xl:mx-auto ml-4 xl:w-0 w-0 group-hover:w-full group-focus-within:w-full h-[2px] transition-all duration-500 ${
                 theme === 'light' ? 'bg-blue-600' : 'bg-blue-400'
               }`}></div>
             </li>
@@ -54,13 +54,13 @@ const NavbarLinks = () => {
         // On blog pages, portfolio sections link back to home
         <>
           {links.map((link, index) => (
-            <li key={index} className="group">
+            <li key={index} className="group xl:block">
               <a
                 href={`/#${link.section}`}
-                className={`cursor-pointer transition-all duration-500 focus:outline-none focus:ring-2 rounded px-2 py-1 ${
+                className={`block cursor-pointer transition-all duration-500 focus:outline-none focus:ring-2 rounded-lg xl:px-2 xl:py-1 px-4 py-3 xl:text-center text-left xl:min-h-0 min-h-[48px] flex items-center ${
                   theme === 'light' 
-                    ? 'text-slate-700 hover:text-blue-600 focus:text-blue-600 focus:ring-blue-500/50' 
-                    : 'text-gray-200 hover:text-blue-400 focus:text-blue-400 focus:ring-blue-500/50'
+                    ? 'text-slate-700 hover:text-blue-600 focus:text-blue-600 focus:ring-blue-500/50 xl:hover:bg-transparent hover:bg-blue-50' 
+                    : 'text-gray-200 hover:text-blue-400 focus:text-blue-400 focus:ring-blue-500/50 xl:hover:bg-transparent hover:bg-gray-800/50'
                 }`}
                 tabIndex={0}
                 role="button"
@@ -68,7 +68,7 @@ const NavbarLinks = () => {
               >
                 {link.link}
               </a>
-              <div className={`mx-auto w-0 group-hover:w-full group-focus-within:w-full h-[2px] transition-all duration-500 ${
+              <div className={`xl:mx-auto ml-4 xl:w-0 w-0 group-hover:w-full group-focus-within:w-full h-[2px] transition-all duration-500 ${
                 theme === 'light' ? 'bg-blue-600' : 'bg-blue-400'
               }`}></div>
             </li>
@@ -78,13 +78,13 @@ const NavbarLinks = () => {
       
       {/* Blog Link - Show only if enabled */}
       {FEATURE_FLAGS.SHOW_BLOG && (
-        <li className="group">
+        <li className="group xl:block">
           <RouterLink
             to="/blog"
-            className={`cursor-pointer transition-all duration-500 focus:outline-none focus:ring-2 rounded px-2 py-1 ${
+            className={`block cursor-pointer transition-all duration-500 focus:outline-none focus:ring-2 rounded-lg xl:px-2 xl:py-1 px-4 py-3 xl:text-center text-left xl:min-h-0 min-h-[48px] flex items-center ${
               theme === 'light' 
-                ? 'text-slate-700 hover:text-blue-600 focus:text-blue-600 focus:ring-blue-500/50' 
-                : 'text-gray-200 hover:text-blue-400 focus:text-blue-400 focus:ring-blue-500/50'
+                ? 'text-slate-700 hover:text-blue-600 focus:text-blue-600 focus:ring-blue-500/50 xl:hover:bg-transparent hover:bg-blue-50' 
+                : 'text-gray-200 hover:text-blue-400 focus:text-blue-400 focus:ring-blue-500/50 xl:hover:bg-transparent hover:bg-gray-800/50'
             }`}
             tabIndex={0}
             role="button"
@@ -92,7 +92,7 @@ const NavbarLinks = () => {
           >
             Blog
           </RouterLink>
-          <div className={`mx-auto w-0 group-hover:w-full group-focus-within:w-full h-[2px] transition-all duration-500 ${
+          <div className={`xl:mx-auto ml-4 xl:w-0 w-0 group-hover:w-full group-focus-within:w-full h-[2px] transition-all duration-500 ${
             theme === 'light' ? 'bg-blue-600' : 'bg-blue-400'
           }`}></div>
         </li>

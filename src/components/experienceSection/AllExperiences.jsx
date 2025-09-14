@@ -165,21 +165,21 @@ const AllExperiences = () => {
                 >
                   {/* Timeline connector */}
                   <div className="flex items-center relative">
-                    {/* Dotted line before arrow */}
-                    <div className="w-8 h-0.5 bg-gradient-to-r from-orange/30 via-orange/60 to-transparent relative">
+                    {/* Simplified dotted line before arrow */}
+                    <div className="w-6 h-0.5 bg-gradient-to-r from-orange/30 via-orange/60 to-transparent relative">
                       <div className="absolute inset-0 bg-gradient-to-r from-orange/50 to-orange animate-pulse" />
                     </div>
                     
                     {/* Enhanced arrow with background */}
                     <div className="relative mx-2">
                       <div className="absolute inset-0 bg-orange/20 rounded-full blur-lg scale-150 group-hover:scale-175 transition-transform duration-500" />
-                      <div className="relative bg-white dark:bg-dark-card p-3 rounded-full shadow-lg border-2 border-orange/30 group-hover:border-orange/60 transition-all duration-300">
-                        <FaArrowRightLong className="text-2xl text-orange group-hover:text-lightOrange transition-all duration-300 group-hover:scale-110" />
+                      <div className="relative bg-white dark:bg-dark-card p-2.5 rounded-full shadow-lg border-2 border-orange/30 group-hover:border-orange/60 transition-all duration-300">
+                        <FaArrowRightLong className="text-xl text-orange group-hover:text-lightOrange transition-all duration-300 group-hover:scale-110" />
                       </div>
                     </div>
                     
-                    {/* Dotted line after arrow */}
-                    <div className="w-8 h-0.5 bg-gradient-to-r from-transparent via-orange/60 to-orange/30 relative">
+                    {/* Simplified dotted line after arrow */}
+                    <div className="w-6 h-0.5 bg-gradient-to-r from-transparent via-orange/60 to-orange/30 relative">
                       <div className="absolute inset-0 bg-gradient-to-r from-orange to-orange/50 animate-pulse" />
                     </div>
                   </div>
@@ -197,9 +197,9 @@ const AllExperiences = () => {
 
       {/* Mobile/Tablet Layout - Vertical */}
       <div className="lg:hidden">
-        <div className="flex flex-col items-center space-y-0">
+        <div className="flex flex-col items-center space-y-0 px-2">
           {experiences.map((experience, index) => (
-            <div key={index} className="flex flex-col items-center w-full max-w-md">
+            <div key={index} className="flex flex-col items-center w-full max-w-xs px-2">
               {/* Experience Card */}
               <motion.div
                 variants={fadeIn("up", index * 0.2)}
@@ -211,44 +211,20 @@ const AllExperiences = () => {
                 <SingleExperience experience={experience} />
               </motion.div>
               
-              {/* Enhanced Mobile Connection Arrow */}
+              {/* Ultra-minimal Mobile Connection */}
               {index < experiences.length - 1 && (
-                <motion.div
-                  variants={fadeIn("down", 0.3)}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.7 }}
-                  className="flex items-center justify-center py-6 group"
-                >
+                <div className="flex items-center justify-center py-2">
                   <div className="flex flex-col items-center">
-                    {/* Vertical dotted line before arrow */}
-                    <div className="w-0.5 h-8 bg-gradient-to-b from-orange/30 via-orange/60 to-transparent relative">
-                      <div className="absolute inset-0 bg-gradient-to-b from-orange/50 to-orange animate-pulse" />
-                    </div>
+                    {/* Minimal vertical line */}
+                    <div className="w-px h-4 bg-orange/25"></div>
                     
-                    {/* Enhanced mobile arrow */}
-                    <div className="relative my-2">
-                      <div className="absolute inset-0 bg-orange/20 rounded-full blur-lg scale-150 group-hover:scale-175 transition-transform duration-500" />
-                      <div className="relative bg-white dark:bg-dark-card p-2.5 rounded-full shadow-lg border-2 border-orange/30 group-hover:border-orange/60 transition-all duration-300">
-                        <div className="transform rotate-90">
-                          <FaArrowRightLong className="text-xl text-orange group-hover:text-lightOrange transition-all duration-300 group-hover:scale-110" />
-                        </div>
-                      </div>
-                    </div>
+                    {/* Tiny dot separator */}
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange/40 my-0.5"></div>
                     
-                    {/* Vertical dotted line after arrow */}
-                    <div className="w-0.5 h-8 bg-gradient-to-b from-transparent via-orange/60 to-orange/30 relative">
-                      <div className="absolute inset-0 bg-gradient-to-b from-orange to-orange/50 animate-pulse" />
-                    </div>
-                    
-                    {/* Mobile progress indicator */}
-                    <div className="mt-2 px-2 py-1 bg-orange/10 rounded-full">
-                      <div className="text-xs font-medium text-orange uppercase tracking-wider">
-                        {index === 0 ? 'Next' : index === 1 ? 'Then' : 'Now'}
-                      </div>
-                    </div>
+                    {/* Minimal vertical line */}
+                    <div className="w-px h-4 bg-orange/25"></div>
                   </div>
-                </motion.div>
+                </div>
               )}
             </div>
           ))}

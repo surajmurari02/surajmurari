@@ -7,8 +7,8 @@ const HeroText = () => {
   
   return (
     <div className="flex flex-col gap-6 h-full justify-center text-center lg:text-left relative">
-      {/* Subtle background glow */}
-      <div className="absolute -left-4 -top-4 w-20 h-20 bg-gradient-to-r from-cyan/10 to-orange/10 rounded-full blur-2xl -z-10"></div>
+      {/* Subtle background glow - Hidden on mobile */}
+      <div className="absolute -left-4 -top-4 w-20 h-20 bg-gradient-to-r from-cyan/10 to-orange/10 rounded-full blur-2xl -z-10 hidden md:block"></div>
       
       {/* Modern role tag */}
       <motion.div
@@ -30,7 +30,7 @@ const HeroText = () => {
         animate="show"
         className="relative"
       >
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight leading-none">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black tracking-tight leading-none">
           <motion.span 
             className="block bg-gradient-to-r from-white via-orange to-cyan bg-clip-text text-transparent"
             whileHover={{ scale: 1.02 }}
@@ -63,7 +63,7 @@ const HeroText = () => {
         animate="show"
         className="relative"
       >
-        <p className="text-xl lg:text-2xl leading-relaxed text-gray-300 font-light">
+        <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300 font-light px-2 sm:px-0">
           Engineer on a{" "}
           <motion.span 
             className="relative"
@@ -106,7 +106,7 @@ const HeroText = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.8, duration: 0.6 }}
-        className="flex flex-wrap gap-3 mt-6"
+        className="flex flex-wrap gap-2 sm:gap-3 mt-6 justify-center lg:justify-start"
       >
         {["AI/ML", "React", "Python", "Cloud"].map((tech, index) => (
           <motion.span
@@ -115,7 +115,7 @@ const HeroText = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 2 + index * 0.1 }}
             whileHover={{ scale: 1.1, rotate: 2 }}
-            className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-cyan/30 rounded-full text-cyan hover:border-orange/50 hover:text-orange transition-all duration-300 cursor-pointer"
+            className="px-3 sm:px-4 py-2 text-sm font-medium bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-cyan/30 rounded-full text-cyan hover:border-orange/50 hover:text-orange transition-all duration-300 cursor-pointer"
           >
             {tech}
           </motion.span>

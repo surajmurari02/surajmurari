@@ -11,19 +11,19 @@ const AllSkillsSM = () => {
   const theme = useSelector((state) => state.theme.mode);
   const allSkills = portfolioConfig.skills.main;
   const categories = portfolioConfig.skills.categories;
-  const [visibleSkills, setVisibleSkills] = useState(9);
+  const [visibleSkills, setVisibleSkills] = useState(6); // Reduced initial load for mobile
   const skillsSectionRef = useRef(null);
   
   const skills = allSkills.slice(0, visibleSkills);
   const hasMoreSkills = visibleSkills < allSkills.length;
-  const canShowLess = visibleSkills > 9;
+  const canShowLess = visibleSkills > 6;
   
   const loadMoreSkills = () => {
-    setVisibleSkills(prev => Math.min(prev + 9, allSkills.length));
+    setVisibleSkills(prev => Math.min(prev + 6, allSkills.length)); // Load fewer at a time on mobile
   };
   
   const showLessSkills = () => {
-    setVisibleSkills(9);
+    setVisibleSkills(6);
     // Scroll to top of main skills section (same as navbar behavior)
     setTimeout(() => {
       const skillsSection = document.getElementById('skills');

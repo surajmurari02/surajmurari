@@ -12,7 +12,7 @@ const ExperienceMain = () => {
   return (
     <section 
       id="experience" 
-      className={`py-16 md:py-24 relative overflow-hidden scroll-mt-32 ${
+      className={`py-12 md:py-24 relative overflow-hidden scroll-mt-32 ${
         theme === 'light' ? 'bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30' : 'bg-gradient-to-br from-dark-bg via-dark-surface/40 to-primary-900/10'
       }`}
       style={{ scrollMarginTop: '130px' }}
@@ -26,25 +26,25 @@ const ExperienceMain = () => {
             : 'bg-gradient-to-br from-primary-900/20 via-dark-surface/30 to-accent-900/10'
         }`} />
         
-        {/* Animated gradient orbs */}
-        <div className={`absolute top-16 left-16 w-96 h-96 rounded-full blur-3xl animate-float ${
+        {/* Animated gradient orbs - Hidden on mobile */}
+        <div className={`absolute top-16 left-16 w-96 h-96 rounded-full blur-3xl animate-float hidden md:block ${
           theme === 'light' 
             ? 'bg-gradient-to-r from-blue-200/30 to-indigo-300/20 opacity-60' 
             : 'bg-gradient-to-r from-primary-500/20 to-accent-500/15 opacity-40'
         }`} />
-        <div className={`absolute bottom-16 right-16 w-80 h-80 rounded-full blur-3xl animate-float ${
+        <div className={`absolute bottom-16 right-16 w-80 h-80 rounded-full blur-3xl animate-float hidden md:block ${
           theme === 'light' 
             ? 'bg-gradient-to-r from-indigo-200/25 to-purple-300/20 opacity-50' 
             : 'bg-gradient-to-r from-accent-500/15 to-cyan/10 opacity-30'
         }`} style={{ animationDelay: '4s' }} />
         
-        {/* Subtle grid pattern */}
-        <div className={`absolute inset-0 opacity-[0.02] ${
+        {/* Subtle grid pattern - Hidden on mobile */}
+        <div className={`absolute inset-0 opacity-[0.02] hidden lg:block ${
           theme === 'light' ? 'bg-grid-pattern' : 'bg-grid-pattern opacity-20'
         }`} />
       </div>
 
-      <Container size="lg" className="relative space-y-12">
+      <Container size="lg" className="relative space-y-8 sm:space-y-12">
         {/* Section Header */}
         <motion.div
           variants={fadeIn("down", 0)}
@@ -96,11 +96,11 @@ const ExperienceMain = () => {
         </motion.div>
       </Container>
 
-      {/* Decorative Lines */}
-      <div className={`absolute left-0 top-1/3 w-16 h-px ${
+      {/* Decorative Lines - Hidden on mobile */}
+      <div className={`absolute left-0 top-1/3 w-16 h-px hidden md:block ${
         theme === 'light' ? 'bg-gradient-to-r from-blue-500 to-transparent' : 'bg-gradient-to-r from-primary-400 to-transparent'
       }`} />
-      <div className={`absolute right-0 bottom-1/3 w-16 h-px ${
+      <div className={`absolute right-0 bottom-1/3 w-16 h-px hidden md:block ${
         theme === 'light' ? 'bg-gradient-to-l from-indigo-500 to-transparent' : 'bg-gradient-to-l from-accent-400 to-transparent'
       }`} />
     </section>

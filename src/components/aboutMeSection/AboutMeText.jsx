@@ -75,13 +75,13 @@ const AboutMeText = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
         viewport={{ once: true }}
-        className="grid grid-cols-3 gap-4 w-full max-w-sm"
+        className="grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-sm"
       >
         {stats.map((stat, index) => (
-          <div key={index} className={`text-center p-2 rounded-xl ${
+          <div key={index} className={`text-center p-1.5 sm:p-2 rounded-xl ${
             theme === 'light' ? 'bg-white/60 backdrop-blur-sm' : 'bg-dark-card/40 backdrop-blur-sm'
           }`}>
-            <div className={`text-xl font-bold ${
+            <div className={`text-lg sm:text-xl font-bold ${
               theme === 'light' 
                 ? 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
                 : 'bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent'
