@@ -9,7 +9,7 @@ const AboutMeMain = () => {
   const theme = useSelector((state) => state.theme.mode);
 
   return (
-    <section id="about" className={`py-16 md:py-24 relative overflow-hidden ${
+    <section id="about" className={`pt-16 md:pt-20 pb-12 md:pb-16 relative overflow-hidden min-h-screen flex flex-col justify-center ${
       theme === 'light' 
         ? 'bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/20' 
         : 'bg-gradient-to-br from-dark-bg via-dark-surface/60 to-primary-900/10'
@@ -44,16 +44,16 @@ const AboutMeMain = () => {
         }`} style={{ animationDelay: '1s' }} />
       </div>
 
-      <Container size="lg" className="relative">
+      <Container size="lg" className="relative flex-1 flex flex-col justify-center">
         {/* Modern Section Header */}
-        <div className="flex flex-col items-center mb-16">
+        <div className="flex flex-col items-center mb-8">
           {/* Main Title */}
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center ${
+            className={`text-2xl md:text-3xl lg:text-4xl font-bold mb-3 text-center ${
               theme === 'light' 
                 ? 'text-gray-900' 
                 : 'text-white'
@@ -68,7 +68,7 @@ const AboutMeMain = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className={`text-lg md:text-xl text-center max-w-4xl leading-relaxed ${
+            className={`text-base md:text-lg text-center max-w-4xl leading-relaxed ${
               theme === 'light' 
                 ? 'text-gray-600' 
                 : 'text-gray-300'
@@ -87,7 +87,7 @@ const AboutMeMain = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center justify-center mt-6 space-x-4"
+            className="flex items-center justify-center mt-3 space-x-4"
           >
             <div className={`w-12 h-px ${
               theme === 'light' ? 'bg-gradient-to-r from-transparent via-blue-400 to-transparent' : 'bg-gradient-to-r from-transparent via-primary-500 to-transparent'
@@ -101,7 +101,7 @@ const AboutMeMain = () => {
           </motion.div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
           {/* Text Content */}
           <motion.div
             variants={fadeIn("right", 0)}

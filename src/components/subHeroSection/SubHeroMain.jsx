@@ -62,25 +62,36 @@ const SubHeroMain = () => {
       </div>
 
       <Container size="lg" className="relative w-full">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.1 }}
-          className="text-center mb-6"
-        >
-          <h2 className={`text-lg font-semibold mb-2 uppercase tracking-wider ${
-            theme === 'light' ? 'text-slate-600' : 'text-dark-text/80'
-          }`}>
-            Core Strengths
-          </h2>
-          <div className={`w-16 h-1 mx-auto rounded-full ${
-            theme === 'light' 
-              ? 'bg-gradient-to-r from-blue-500 to-indigo-500' 
-              : 'bg-gradient-to-r from-primary-500 to-accent-500'
-          }`} />
-        </motion.div>
+        {/* Section Header - Styled like Let's Connect */}
+        <div className="flex flex-col items-center mb-12">
+          {/* Main Title */}
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center ${
+              theme === 'light' 
+                ? 'text-gray-900' 
+                : 'text-white'
+            }`}
+          >
+            Building <span className="text-cyan">innovative AI solutions</span> with cutting-edge technologies
+          </motion.h2>
+
+          {/* Decorative Elements */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex items-center justify-center mt-6 space-x-4"
+          >
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-cyan to-transparent" />
+            <div className="w-2 h-2 rounded-full bg-cyan" />
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-cyan to-transparent" />
+          </motion.div>
+        </div>
 
         {/* Modern Cards Layout */}
         <div className="grid md:grid-cols-3 gap-4 lg:gap-6 mb-6">
@@ -136,20 +147,6 @@ const SubHeroMain = () => {
           ))}
         </div>
 
-        {/* Bottom Tagline */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true, amount: 0.1 }}
-          className="text-center"
-        >
-          <p className={`text-lg italic ${
-            theme === 'light' ? 'text-slate-600' : 'text-dark-text/80'
-          }`}>
-            "Building AI solutions that deliver real-world impact"
-          </p>
-        </motion.div>
       </Container>
     </section>
   );

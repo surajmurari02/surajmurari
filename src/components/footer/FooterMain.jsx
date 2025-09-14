@@ -1,4 +1,5 @@
 import { Link } from "react-scroll";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import Container from '../common/Container';
@@ -6,13 +7,15 @@ import { FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
 
 const FooterMain = () => {
   const theme = useSelector((state) => state.theme.mode);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
   
   const footerLinks = [
-    { name: "About Me", section: "about", icon: "👨‍💻" },
-    { name: "Skills", section: "skills", icon: "🚀" },
-    { name: "Experience", section: "experience", icon: "💼" },
-    { name: "Projects", section: "projects", icon: "🛠️" },
-    { name: "Contact", section: "contact", icon: "📧" },
+    { name: "About Me", section: "about" },
+    { name: "Skills", section: "skills" },
+    { name: "Experience", section: "experience" },
+    { name: "Projects", section: "projects" },
+    { name: "Contact", section: "contact" },
   ];
 
   const socialLinks = [
@@ -23,7 +26,7 @@ const FooterMain = () => {
 
 
   return (
-    <footer className="relative mt-20 overflow-hidden">
+    <footer className="relative mt-8 overflow-hidden">
       {/* Modern background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-black to-gray-900"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-cyan/5 via-transparent to-orange/5"></div>
@@ -32,9 +35,9 @@ const FooterMain = () => {
       <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.3)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
 
       <Container size="lg">
-        <div className="relative py-20">
+        <div className="relative py-12">
           {/* Main Footer Content */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             {/* Brand Section - Enhanced */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -44,22 +47,37 @@ const FooterMain = () => {
               className="lg:col-span-2 space-y-6"
             >
               <div className="space-y-4">
-                <Link
-                  to="hero"
-                  spy={true}
-                  smooth={true}
-                  duration={800}
-                  offset={-130}
-                  className="cursor-pointer inline-block"
-                >
-                  <motion.h3 
-                    className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-white via-orange to-cyan bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                {isHomePage ? (
+                  <Link
+                    to="hero"
+                    spy={true}
+                    smooth={true}
+                    duration={800}
+                    offset={-130}
+                    className="cursor-pointer inline-block"
                   >
-                    Suraj Murari
-                  </motion.h3>
-                </Link>
+                    <motion.h3 
+                      className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-white via-orange to-cyan bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      Suraj Murari
+                    </motion.h3>
+                  </Link>
+                ) : (
+                  <a
+                    href="/"
+                    className="cursor-pointer inline-block"
+                  >
+                    <motion.h3 
+                      className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-white via-orange to-cyan bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      Suraj Murari
+                    </motion.h3>
+                  </a>
+                )}
                 
                 <motion.div
                   initial={{ width: 0 }}
@@ -115,17 +133,25 @@ const FooterMain = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 + index * 0.1 }}
                   >
-                    <Link
-                      spy={true}
-                      smooth={true}
-                      duration={800}
-                      offset={-120}
-                      to={item.section}
-                      className="flex items-center gap-3 text-gray-400 hover:text-cyan transition-all duration-300 cursor-pointer group"
-                    >
-                      <span className="text-sm group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
-                      <span className="group-hover:translate-x-1 transition-transform duration-300">{item.name}</span>
-                    </Link>
+                    {isHomePage ? (
+                      <Link
+                        spy={true}
+                        smooth={true}
+                        duration={800}
+                        offset={-120}
+                        to={item.section}
+                        className="text-gray-400 hover:text-cyan transition-all duration-300 cursor-pointer group"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">{item.name}</span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={`/#${item.section}`}
+                        className="text-gray-400 hover:text-cyan transition-all duration-300 cursor-pointer group"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">{item.name}</span>
+                      </a>
+                    )}
                   </motion.li>
                 ))}
               </ul>
@@ -186,15 +212,14 @@ const FooterMain = () => {
               <span>Built with</span>
               <motion.span 
                 className="text-red-500"
+                style={{ color: '#ef4444' }}
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
                 ♥
               </motion.span>
-              <span>using</span>
-              <span className="text-cyan">React</span>
-              <span>&</span>
-              <span className="text-orange">Tailwind CSS</span>
+              <span>by</span>
+              <span className="text-cyan font-medium">Suraj Murari</span>
             </div>
           </motion.div>
         </div>

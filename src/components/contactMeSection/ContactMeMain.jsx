@@ -9,7 +9,7 @@ const ContactMeMain = () => {
   return (
     <motion.div
       id="contact"
-      className="max-w-[1400px] mx-auto mt-[100px] px-4 relative"
+      className="max-w-[1400px] mx-auto pt-8 md:pt-12 pb-12 md:pb-16 px-4 relative min-h-screen flex flex-col justify-center"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -19,14 +19,14 @@ const ContactMeMain = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-cyan/5 to-orange/5 rounded-3xl blur-3xl -z-10"></div>
       
       {/* Modern Section Header */}
-      <div className="flex flex-col items-center mb-16">
+      <div className="flex flex-col items-center mb-6 lg:mb-8">
         {/* Main Title */}
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center ${
+          className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-center ${
             theme === 'light' 
               ? 'text-gray-900' 
               : 'text-white'
@@ -41,7 +41,7 @@ const ContactMeMain = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className={`text-lg md:text-xl text-center max-w-4xl leading-relaxed ${
+          className={`text-base md:text-lg text-center max-w-4xl leading-relaxed ${
             theme === 'light' 
               ? 'text-gray-600' 
               : 'text-gray-300'
@@ -60,7 +60,7 @@ const ContactMeMain = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex items-center justify-center mt-6 space-x-4"
+          className="flex items-center justify-center mt-3 space-x-4"
         >
           <div className="w-12 h-px bg-gradient-to-r from-transparent via-cyan to-transparent" />
           <div className="w-2 h-2 rounded-full bg-cyan" />
@@ -70,13 +70,13 @@ const ContactMeMain = () => {
 
       {/* Main content with modern glass morphism effect */}
       <motion.div 
-        className="relative backdrop-blur-xl bg-white/5 dark:bg-black/20 border border-white/10 rounded-3xl p-8 lg:p-12 shadow-2xl"
+        className="relative backdrop-blur-xl bg-white/5 dark:bg-black/20 border border-white/10 rounded-3xl p-6 lg:p-8 pb-8 lg:pb-12 shadow-2xl flex-1 flex flex-col justify-center"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.4 }}
         viewport={{ once: true }}
       >
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           <ContactMeLeft />
           <ContactMeRight />
         </div>

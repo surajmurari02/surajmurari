@@ -206,7 +206,7 @@ const ContactForm = () => {
         )}
       </AnimatePresence>
 
-      <form ref={form} onSubmit={sendEmail} className="space-y-4">
+      <form ref={form} onSubmit={sendEmail} className="space-y-3 mb-4">
         {/* Honeypot field - hidden from users but visible to bots */}
         <input
           type="text"
@@ -225,7 +225,7 @@ const ContactForm = () => {
             name="from_name"
             placeholder="Your Name"
             required
-            className={`w-full h-12 rounded-xl bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border ${
+            className={`w-full h-10 rounded-xl bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border ${
               errors.name ? 'border-red-500/50' : focusedField === 'name' ? 'border-cyan/50' : 'border-white/10'
             } px-4 text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan/30 transition-all duration-300`}
             value={name}
@@ -261,7 +261,7 @@ const ContactForm = () => {
             name="from_email"
             placeholder="Your Email"
             required
-            className={`w-full h-12 rounded-xl bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border ${
+            className={`w-full h-10 rounded-xl bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border ${
               errors.email ? 'border-red-500/50' : focusedField === 'email' ? 'border-cyan/50' : 'border-white/10'
             } px-4 text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan/30 transition-all duration-300`}
             value={email}
@@ -347,7 +347,7 @@ const ContactForm = () => {
         <motion.button
           type="submit"
           disabled={isLoading || isBlocked}
-          className={`w-full h-12 rounded-xl font-semibold text-lg transition-all duration-300 ${
+          className={`w-full h-10 rounded-xl font-semibold text-base transition-all duration-300 ${
             isLoading || isBlocked
               ? 'bg-gray-600 cursor-not-allowed' 
               : 'bg-gradient-to-r from-cyan to-orange hover:from-cyan/80 hover:to-orange/80 hover:shadow-lg hover:shadow-cyan/25'

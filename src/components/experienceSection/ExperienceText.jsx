@@ -1,43 +1,54 @@
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 
 const ExperienceText = () => {
   const theme = useSelector((state) => state.theme.mode);
 
   return (
-    <div className="flex flex-col items-center space-y-6">
-      <div className="text-center">
-        <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${
-          theme === 'light'
-            ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent'
-            : 'bg-gradient-to-r from-primary-500 via-accent-500 to-cyan bg-clip-text text-transparent'
-        }`}>
-          Experience
-        </h2>
-        <p className={`text-lg md:text-xl max-w-2xl mx-auto leading-relaxed ${
+    <div className="flex flex-col items-center max-w-4xl mx-auto">
+      {/* Main Title - Styled like Let's Connect */}
+      <motion.h2 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center ${
           theme === 'light' 
-            ? 'text-slate-600' 
-            : 'text-dark-text/80'
-        }`}>
-          Building innovative AI solutions with cutting-edge technologies
-        </p>
-      </div>
-      
-      {/* Decorative element */}
-      <div className="flex items-center gap-3">
-        <div className={`w-8 h-px ${
+            ? 'text-gray-900' 
+            : 'text-white'
+        }`}
+      >
+        <span className={`${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>Experience</span>
+      </motion.h2>
+
+      {/* Subtitle */}
+      <motion.p 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className={`text-lg md:text-xl text-center max-w-4xl leading-relaxed mb-6 ${
           theme === 'light' 
-            ? 'bg-gradient-to-r from-transparent to-blue-400' 
-            : 'bg-gradient-to-r from-transparent to-primary-400'
-        }`} />
-        <div className={`w-2 h-2 rounded-full ${
-          theme === 'light' ? 'bg-blue-500' : 'bg-primary-500'
-        }`} />
-        <div className={`w-8 h-px ${
-          theme === 'light' 
-            ? 'bg-gradient-to-l from-transparent to-indigo-400' 
-            : 'bg-gradient-to-l from-transparent to-accent-400'
-        }`} />
-      </div>
+            ? 'text-gray-600' 
+            : 'text-gray-300'
+        }`}
+      >
+        Building <span className="font-semibold text-orange">innovative AI solutions</span> with{' '}
+        <span className="font-semibold text-cyan">cutting-edge technologies</span>
+      </motion.p>
+
+      {/* Decorative Elements */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="flex items-center justify-center space-x-4"
+      >
+        <div className="w-12 h-px bg-gradient-to-r from-transparent via-cyan to-transparent" />
+        <div className="w-2 h-2 rounded-full bg-cyan" />
+        <div className="w-12 h-px bg-gradient-to-r from-transparent via-cyan to-transparent" />
+      </motion.div>
     </div>
   );
 };

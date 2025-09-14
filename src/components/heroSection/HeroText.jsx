@@ -6,7 +6,7 @@ const HeroText = () => {
   const theme = useSelector((state) => state.theme.mode);
   
   return (
-    <div className="flex flex-col gap-6 h-full justify-center md:text-left sm:text-center relative">
+    <div className="flex flex-col gap-6 h-full justify-center text-center lg:text-left relative">
       {/* Subtle background glow */}
       <div className="absolute -left-4 -top-4 w-20 h-20 bg-gradient-to-r from-cyan/10 to-orange/10 rounded-full blur-2xl -z-10"></div>
       
@@ -15,7 +15,7 @@ const HeroText = () => {
         variants={fadeIn("down", 0.2)}
         initial="hidden"
         animate="show"
-        className="inline-flex items-center gap-2 w-fit"
+        className="inline-flex items-center gap-2 w-fit mx-auto lg:mx-0"
       >
         <span className="w-2 h-2 bg-cyan rounded-full animate-pulse"></span>
         <h2 className="text-sm lg:text-base font-mono tracking-wider bg-gradient-to-r from-cyan to-orange bg-clip-text text-transparent uppercase font-semibold">

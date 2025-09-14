@@ -2,14 +2,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../state/themeSlice';
 import { motion } from 'framer-motion';
 import { HiSun, HiMoon } from 'react-icons/hi';
+import { FEATURE_FLAGS } from '../../config/features';
 
 const ThemeToggle = () => {
   const theme = useSelector((state) => state.theme.mode);
   const dispatch = useDispatch();
 
   const handleToggle = () => {
-    dispatch(toggleTheme());
+    // Only allow theme toggle if light theme is enabled
+    if (FEATURE_FLAGS.ENABLE_LIGHT_THEME) {
+      dispatch(toggleTheme());
+    }
   };
+
+  // Don't render the toggle button if light theme is disabled
+  if (!FEATURE_FLAGS.ENABLE_LIGHT_THEME) {
+    return null;
+  }
 
   return (
     <motion.button

@@ -15,23 +15,23 @@ const AboutMeText = () => {
   ];
 
   return (
-    <div className="flex flex-col md:items-start sm:items-center md:text-left sm:text-center space-y-8">
+    <div className="flex flex-col md:items-start sm:items-center md:text-left sm:text-center space-y-6">
       {/* Intro & Title */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h3 className={`text-2xl lg:text-3xl font-bold mb-3 ${
+          <h3 className={`text-xl lg:text-2xl font-bold mb-2 ${
             theme === 'light' 
               ? 'bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent' 
               : 'bg-gradient-to-r from-white to-dark-text bg-clip-text text-transparent'
           }`}>
             Hi, I'm {portfolioConfig.personal.name}
           </h3>
-          <p className={`text-lg font-medium ${
+          <p className={`text-base font-medium ${
             theme === 'light' 
               ? 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
               : 'bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent'
@@ -45,7 +45,7 @@ const AboutMeText = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className={`text-base leading-relaxed ${
+          className={`text-sm leading-relaxed ${
             theme === 'light' ? 'text-slate-600' : 'text-dark-text/90'
           }`}
         >
@@ -59,7 +59,7 @@ const AboutMeText = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
-          className={`text-base leading-relaxed ${
+          className={`text-sm leading-relaxed ${
             theme === 'light' ? 'text-slate-600' : 'text-dark-text/90'
           }`}
         >
@@ -75,13 +75,13 @@ const AboutMeText = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
         viewport={{ once: true }}
-        className="grid grid-cols-3 gap-6 w-full max-w-sm"
+        className="grid grid-cols-3 gap-4 w-full max-w-sm"
       >
         {stats.map((stat, index) => (
-          <div key={index} className={`text-center p-3 rounded-xl ${
+          <div key={index} className={`text-center p-2 rounded-xl ${
             theme === 'light' ? 'bg-white/60 backdrop-blur-sm' : 'bg-dark-card/40 backdrop-blur-sm'
           }`}>
-            <div className={`text-2xl font-bold ${
+            <div className={`text-xl font-bold ${
               theme === 'light' 
                 ? 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
                 : 'bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent'

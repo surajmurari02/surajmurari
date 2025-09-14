@@ -31,7 +31,7 @@ const HeroMain = () => {
   ];
 
   return (
-    <section id="hero" className="relative pt-28 md:pt-32 pb-16 md:pb-20 overflow-hidden">
+    <section id="hero" className="relative pt-28 md:pt-32 pb-16 md:pb-20 overflow-hidden min-h-screen flex flex-col justify-between">
       {/* Enhanced Background */}
       <div className="absolute inset-0 -z-10">
         {/* Base gradient */}
@@ -64,13 +64,13 @@ const HeroMain = () => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
-      <Container size="lg">
+      <Container size="lg" className="flex flex-col justify-center flex-1">
         {/* Main Hero Section */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[500px] mb-12"
+          className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16"
         >
           {/* Hero Text Section */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
@@ -105,7 +105,7 @@ const HeroMain = () => {
           </div>
 
           {/* Core Strengths Cards */}
-          <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {highlights.map((highlight, index) => (
               <motion.div
                 key={index}
@@ -114,7 +114,7 @@ const HeroMain = () => {
                 animate="show"
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.4 }}
-                className={`relative group p-4 lg:p-5 h-full min-h-[180px] rounded-2xl border backdrop-blur-md transition-all duration-500 ${
+                className={`relative group p-4 lg:p-5 h-full min-h-[160px] rounded-2xl border backdrop-blur-md transition-all duration-500 ${
                   theme === 'light' 
                     ? 'bg-white/90 border-blue-200/60 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300/80' 
                     : 'bg-dark-card/90 border-primary-500/30 shadow-lg hover:shadow-xl hover:shadow-primary-500/20 hover:border-primary-400/50'
@@ -162,7 +162,7 @@ const HeroMain = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="text-center pt-2"
+            className="text-center pt-4"
           >
             <p className={`text-lg italic ${
               theme === 'light' ? 'text-slate-600' : 'text-dark-text/80'

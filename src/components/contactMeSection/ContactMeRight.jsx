@@ -5,7 +5,7 @@ import ContactSocial from "./ContactSocial";
 const ContactMeRight = () => {
   return (
     <motion.div 
-      className="flex flex-col items-center justify-center gap-8 lg:gap-12"
+      className="flex flex-col items-center justify-center gap-4 lg:gap-6"
       initial={{ opacity: 0, x: 30 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: 0.6 }}
@@ -28,7 +28,7 @@ const ContactMeRight = () => {
         <img
           src="/images/email-image.png"
           alt="Contact illustration"
-          className="relative max-w-[250px] lg:max-w-[300px] drop-shadow-2xl"
+          className="relative max-w-[200px] lg:max-w-[250px] drop-shadow-2xl"
         />
       </motion.div>
 
