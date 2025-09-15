@@ -225,9 +225,9 @@ const ContactForm = () => {
             name="from_name"
             placeholder="Your Name"
             required
-            className={`w-full h-9 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-r from-gray-800/90 sm:from-white/5 to-gray-700/90 sm:to-white/10 backdrop-blur-sm border ${
-              errors.name ? 'border-red-500/50' : focusedField === 'name' ? 'border-cyan/50' : 'border-white/10'
-            } px-3 sm:px-4 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan/30 transition-all duration-300`}
+            className={`w-full h-9 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-r from-gray-800/20 to-gray-700/30 backdrop-blur-sm border ${
+              errors.name ? 'border-red-500/50' : focusedField === 'name' ? 'border-cyan/50' : 'border-white/30'
+            } px-3 sm:px-4 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan/40 transition-all duration-300`}
             value={name}
             onChange={(e) => {
               setName(e.target.value);
@@ -261,9 +261,9 @@ const ContactForm = () => {
             name="from_email"
             placeholder="Your Email"
             required
-            className={`w-full h-9 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-r from-gray-800/90 sm:from-white/5 to-gray-700/90 sm:to-white/10 backdrop-blur-sm border ${
-              errors.email ? 'border-red-500/50' : focusedField === 'email' ? 'border-cyan/50' : 'border-white/10'
-            } px-3 sm:px-4 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan/30 transition-all duration-300`}
+            className={`w-full h-9 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-r from-gray-800/20 to-gray-700/30 backdrop-blur-sm border ${
+              errors.email ? 'border-red-500/50' : focusedField === 'email' ? 'border-cyan/50' : 'border-white/30'
+            } px-3 sm:px-4 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan/40 transition-all duration-300`}
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -297,9 +297,9 @@ const ContactForm = () => {
             rows="4"
             placeholder="Your Message..."
             required
-            className={`w-full rounded-lg sm:rounded-xl bg-gradient-to-r from-gray-800/90 sm:from-white/5 to-gray-700/90 sm:to-white/10 backdrop-blur-sm border ${
-              errors.message ? 'border-red-500/50' : focusedField === 'message' ? 'border-cyan/50' : 'border-white/10'
-            } p-3 sm:p-4 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan/30 transition-all duration-300 resize-none`}
+            className={`w-full rounded-lg sm:rounded-xl bg-gradient-to-r from-gray-800/20 to-gray-700/30 backdrop-blur-sm border ${
+              errors.message ? 'border-red-500/50' : focusedField === 'message' ? 'border-cyan/50' : 'border-white/30'
+            } p-3 sm:p-4 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan/40 transition-all duration-300 resize-none`}
             value={message}
             onChange={(e) => {
               setMessage(e.target.value);

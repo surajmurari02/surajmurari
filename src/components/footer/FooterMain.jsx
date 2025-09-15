@@ -35,18 +35,18 @@ const FooterMain = () => {
       <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.3)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
 
       <Container size="lg">
-        <div className="relative py-12">
+        <div className="relative py-6 sm:py-8 md:py-12">
           {/* Main Footer Content */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8 md:mb-10">
             {/* Brand Section - Enhanced */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="lg:col-span-2 space-y-6"
+              className="lg:col-span-2 space-y-3 sm:space-y-4 md:space-y-6">
             >
-              <div className="space-y-4">
+              <div className="space-y-2 sm:space-y-3 md:space-y-4">
                 {isHomePage ? (
                   <Link
                     to="hero"
@@ -57,7 +57,7 @@ const FooterMain = () => {
                     className="cursor-pointer inline-block"
                   >
                     <motion.h3 
-                      className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-white via-orange to-cyan bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+                      className="text-2xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-white via-orange to-cyan bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
                       whileHover={{ scale: 1.02 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -70,7 +70,7 @@ const FooterMain = () => {
                     className="cursor-pointer inline-block"
                   >
                     <motion.h3 
-                      className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-white via-orange to-cyan bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+                      className="text-2xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-white via-orange to-cyan bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
                       whileHover={{ scale: 1.02 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -87,26 +87,26 @@ const FooterMain = () => {
                 />
               </div>
               
-              <p className="text-lg leading-relaxed text-gray-300 max-w-md">
+              <p className="text-xs sm:text-sm md:text-lg leading-relaxed text-gray-300 max-w-md">
                 Passionate <span className="text-cyan font-semibold">ML Engineer</span> & <span className="text-orange font-semibold">Full Stack Developer</span> crafting innovative solutions with cutting-edge technologies.
               </p>
 
               {/* Social Links with modern design */}
-              <div className="flex gap-4 mt-6">
+              <div className="flex gap-2 sm:gap-3 md:gap-4 mt-3 sm:mt-4 md:mt-6">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative p-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border border-white/10 rounded-xl text-gray-400 hover:text-white transition-all duration-300 hover:border-cyan/50"
+                    className="group relative p-1.5 sm:p-2 md:p-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border border-white/10 rounded-md sm:rounded-lg md:rounded-xl text-gray-400 hover:text-white transition-all duration-300 hover:border-cyan/50"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8 + index * 0.1 }}
                   >
-                    <social.icon size={20} />
+                    <social.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan/20 to-orange/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md -z-10" />
                   </motion.a>
                 ))}
@@ -119,13 +119,13 @@ const FooterMain = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-3 sm:space-y-4 md:space-y-6"
             >
-              <h4 className="text-xl font-bold text-white flex items-center gap-2">
+              <h4 className="text-base sm:text-lg md:text-xl font-bold text-white flex items-center gap-2">
                 <span className="w-2 h-2 bg-cyan rounded-full animate-pulse"></span>
                 Quick Links
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-1.5 sm:space-y-2 md:space-y-3">
                 {footerLinks.map((item, index) => (
                   <motion.li 
                     key={index}
@@ -140,14 +140,14 @@ const FooterMain = () => {
                         duration={800}
                         offset={-120}
                         to={item.section}
-                        className="text-gray-400 hover:text-cyan transition-all duration-300 cursor-pointer group"
+                        className="text-gray-400 hover:text-cyan transition-all duration-300 cursor-pointer group text-xs sm:text-sm md:text-base"
                       >
                         <span className="group-hover:translate-x-1 transition-transform duration-300">{item.name}</span>
                       </Link>
                     ) : (
                       <a
                         href={`/#${item.section}`}
-                        className="text-gray-400 hover:text-cyan transition-all duration-300 cursor-pointer group"
+                        className="text-gray-400 hover:text-cyan transition-all duration-300 cursor-pointer group text-xs sm:text-sm md:text-base"
                       >
                         <span className="group-hover:translate-x-1 transition-transform duration-300">{item.name}</span>
                       </a>
@@ -163,26 +163,26 @@ const FooterMain = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-3 sm:space-y-4 md:space-y-6"
             >
-              <h4 className="text-xl font-bold text-white flex items-center gap-2">
+              <h4 className="text-base sm:text-lg md:text-xl font-bold text-white flex items-center gap-2">
                 <span className="w-2 h-2 bg-orange rounded-full animate-pulse"></span>
                 Get In Touch
               </h4>
               <div className="space-y-4">
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed">
                   Ready to bring your ideas to life? Let's collaborate and create something <span className="text-orange font-semibold">amazing</span> together.
                 </p>
                 
                 {/* Quick contact info */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-gray-400">
-                    <FiMapPin size={16} className="text-cyan" />
-                    <span className="text-sm">Noida, India</span>
+                <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
+                  <div className="flex items-center gap-2 sm:gap-3 text-gray-400">
+                    <FiMapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan" />
+                    <span className="text-xs sm:text-sm">Noida, India</span>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-400">
-                    <FiMail size={16} className="text-orange" />
-                    <span className="text-sm">surajmurari02@gmail.com</span>
+                  <div className="flex items-center gap-2 sm:gap-3 text-gray-400">
+                    <FiMail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange" />
+                    <span className="text-xs sm:text-sm">surajmurari02@gmail.com</span>
                   </div>
                 </div>
               </div>
@@ -194,7 +194,7 @@ const FooterMain = () => {
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="w-full h-px bg-gradient-to-r from-transparent via-cyan/30 via-orange/30 to-transparent mb-8"
+            className="w-full h-px bg-gradient-to-r from-transparent via-cyan/30 via-orange/30 to-transparent mb-4 sm:mb-6 md:mb-8"
           />
 
           {/* Copyright Section - Modernized */}
@@ -205,10 +205,10 @@ const FooterMain = () => {
             viewport={{ once: true }}
             className="flex flex-col items-center text-center"
           >
-            <p className="text-gray-400 text-sm mb-2">
+            <p className="text-gray-400 text-xs mb-1 sm:mb-2">
               © 2025 <span className="text-white font-medium">Suraj Murari</span>. All rights reserved.
             </p>
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-xs text-gray-500">
               <span>Built with</span>
               <motion.span 
                 className="text-red-500"
@@ -224,9 +224,9 @@ const FooterMain = () => {
           </motion.div>
         </div>
 
-        {/* Decorative elements */}
-        <div className="absolute top-10 right-10 w-20 h-20 bg-gradient-to-r from-cyan/10 to-orange/10 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-10 left-10 w-16 h-16 bg-gradient-to-r from-orange/10 to-cyan/10 rounded-full blur-xl"></div>
+        {/* Decorative elements - Hidden on mobile */}
+        <div className="hidden sm:block absolute top-10 right-10 w-20 h-20 bg-gradient-to-r from-cyan/10 to-orange/10 rounded-full blur-2xl"></div>
+        <div className="hidden sm:block absolute bottom-10 left-10 w-16 h-16 bg-gradient-to-r from-orange/10 to-cyan/10 rounded-full blur-xl"></div>
       </Container>
     </footer>
   );
