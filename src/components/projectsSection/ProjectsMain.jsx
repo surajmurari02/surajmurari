@@ -137,7 +137,7 @@ const ProjectsMain = () => {
   const remainingCount = filteredProjects.length - INITIAL_PROJECTS_COUNT;
 
   return (
-    <section id="projects" className={`py-12 md:py-16 relative ${
+    <section id="projects" className={`py-8 sm:py-12 md:py-16 relative ${
       theme === 'light' ? 'bg-gradient-to-b from-slate-50/90 to-white/90' : 'bg-dark-bg'
     }`}>
       {/* Background Pattern */}
@@ -147,7 +147,7 @@ const ProjectsMain = () => {
         }`} />
       </div>
 
-      <Container size="lg" className="relative space-y-12">
+      <Container size="lg" className="relative space-y-8 sm:space-y-12">
         {/* Section Header */}
         <motion.div
           variants={fadeIn("top", 0)}
@@ -176,7 +176,7 @@ const ProjectsMain = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="space-y-6 lg:space-y-8">
+        <div className="space-y-4 sm:space-y-6 lg:space-y-8">
           {displayedProjects.length > 0 ? (
             displayedProjects.map((project, index) => (
               <motion.div
@@ -236,13 +236,13 @@ const ProjectsMain = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex justify-center mt-12"
+              className="flex justify-center mt-8 sm:mt-12"
             >
               <motion.button
                 onClick={() => setShowAll(!showAll)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                className={`inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 ${
                   theme === 'light'
                     ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl hover:shadow-blue-500/20'
                     : 'bg-primary-600 text-white hover:bg-primary-700 shadow-glow hover:shadow-glow-lg'
@@ -251,13 +251,15 @@ const ProjectsMain = () => {
               >
                 {showAll ? (
                   <>
-                    <FiChevronUp className="w-5 h-5" />
-                    Show Less Projects
+                    <FiChevronUp className="w-4 sm:w-5 h-4 sm:h-5" />
+                    <span className="hidden sm:inline">Show Less Projects</span>
+                    <span className="sm:hidden">Show Less</span>
                   </>
                 ) : (
                   <>
-                    <FiChevronDown className="w-5 h-5" />
-                    Show {remainingCount} More Project{remainingCount !== 1 ? 's' : ''}
+                    <FiChevronDown className="w-4 sm:w-5 h-4 sm:h-5" />
+                    <span className="hidden sm:inline">Show {remainingCount} More Project{remainingCount !== 1 ? 's' : ''}</span>
+                    <span className="sm:hidden">+{remainingCount} More</span>
                   </>
                 )}
               </motion.button>

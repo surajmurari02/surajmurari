@@ -347,7 +347,7 @@ const ContactForm = () => {
         <motion.button
           type="submit"
           disabled={isLoading || isBlocked}
-          className={`w-full h-10 rounded-xl font-semibold text-base transition-all duration-300 ${
+          className={`w-full h-9 sm:h-10 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 ${
             isLoading || isBlocked
               ? 'bg-gray-600 cursor-not-allowed' 
               : 'bg-gradient-to-r from-cyan to-orange hover:from-cyan/80 hover:to-orange/80 hover:shadow-lg hover:shadow-cyan/25'

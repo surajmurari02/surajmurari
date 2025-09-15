@@ -5,15 +5,15 @@ import ContactSocial from "./ContactSocial";
 const ContactMeRight = () => {
   return (
     <motion.div 
-      className="flex flex-col items-center justify-center gap-4 lg:gap-6"
+      className="flex flex-col items-center justify-center gap-3 sm:gap-4 lg:gap-6"
       initial={{ opacity: 0, x: 30 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: 0.6 }}
       viewport={{ once: true }}
     >
-      {/* Modern illustration with floating animation */}
+      {/* Modern illustration with floating animation - Hidden on mobile */}
       <motion.div 
-        className="relative"
+        className="relative hidden sm:block"
         animate={{ 
           y: [0, -10, 0],
           rotate: [0, 1, -1, 0]
@@ -28,7 +28,7 @@ const ContactMeRight = () => {
         <img
           src="/images/email-image.png"
           alt="Contact illustration"
-          className="relative max-w-[200px] lg:max-w-[250px] drop-shadow-2xl"
+          className="relative max-w-[150px] sm:max-w-[200px] lg:max-w-[250px] drop-shadow-2xl"
         />
       </motion.div>
 
@@ -52,9 +52,9 @@ const ContactMeRight = () => {
         <ContactSocial />
       </motion.div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan/10 to-transparent rounded-full blur-2xl"></div>
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-orange/10 to-transparent rounded-full blur-2xl"></div>
+      {/* Decorative elements - Hidden on mobile */}
+      <div className="hidden sm:block absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan/10 to-transparent rounded-full blur-2xl"></div>
+      <div className="hidden sm:block absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-orange/10 to-transparent rounded-full blur-2xl"></div>
     </motion.div>
   );
 };

@@ -19,15 +19,20 @@ const ContactText = () => {
         <p className="text-base lg:text-lg">
           Open to full-time roles, collaborations, startup ideas, or even a good tech conversation over coffee ☕
         </p>
-        <div className="flex flex-wrap gap-2 mt-6">
-          {["Full-time", "Freelance", "Collaborations", "Startups"].map((tag, index) => (
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-4 sm:mt-6">
+          {["Full-time", "Freelance", "Collaborations"].map((tag, index) => (
             <span 
               key={tag}
-              className="px-3 py-1 bg-gradient-to-r from-cyan/20 to-orange/20 rounded-full text-sm lg:text-base border border-cyan/30 text-cyan font-medium"
+              className="px-2 sm:px-3 py-1 bg-gradient-to-r from-cyan/20 to-orange/20 rounded-full text-xs sm:text-sm lg:text-base border border-cyan/30 text-cyan font-medium"
             >
-              {tag}
+              <span className="sm:hidden">{tag === "Collaborations" ? "Collab" : tag}</span>
+              <span className="hidden sm:inline">{tag}</span>
             </span>
           ))}
+          {/* Show Startups only on desktop */}
+          <span className="hidden lg:inline-block px-2 sm:px-3 py-1 bg-gradient-to-r from-cyan/20 to-orange/20 rounded-full text-xs sm:text-sm lg:text-base border border-cyan/30 text-cyan font-medium">
+            Startups
+          </span>
         </div>
       </div>
     </motion.div>
